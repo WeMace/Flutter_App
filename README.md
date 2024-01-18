@@ -1,16 +1,13 @@
-# wemace
+# WeMace: Women Empowering Markets And Connecting Enterprises
+![Group 9 (1)](https://github.com/WeMace/Flutter_App/assets/127939893/e0a3780d-01c0-4722-a163-17df40b3c663)
 
-A new Flutter project.
+WeMace also Known as "Women Empowering Markets And Connecting Enterprises" is a cross-platform app designed for Self Help Groups (SHGs) committed to organizing and forming resilient communities. Harness the power of collaboration as SHG members come together to share resources, support one another, and create positive change. Join WeMace and embark on a journey of community empowerment where individuals unite for collective growth and impact.
 
-## Getting Started
+## Getting Started With our Product!
 
-This project is a starting point for a Flutter application.
+<a href="https://www.youtube.com/channel/UCoH6Dysalp55yyASPNjzudg">
+    <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white" alt="LinkedIn Badge"/>
+  </a> 	
+  
+ <hr>
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
