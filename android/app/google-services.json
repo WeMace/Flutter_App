@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "549248573049",
+    "project_id": "wemace-36213",
+    "storage_bucket": "wemace-36213.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549248573049:android:4a60631874d2e5852f7ea8",
+        "android_client_info": {
+          "package_name": "com.example.wemace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpICdK9dleaGB-xxGuF7JzTZTBxFC0Wyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549248573049:android:6d768114e6cccc5c2f7ea8",
+        "android_client_info": {
+          "package_name": "we.mace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpICdK9dleaGB-xxGuF7JzTZTBxFC0Wyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
