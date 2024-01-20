@@ -7,8 +7,8 @@ import 'package:wemace/theme/pallete.dart';
 class SignInButton extends ConsumerWidget {
   const SignInButton({Key? key}) : super(key: key);
 
-  void signInWithGoogle(WidgetRef ref) {
-    ref.read(AuthControllerProvider).signInWithGoogle();
+  void signInWithGoogle(BuildContext context, WidgetRef ref) {
+    ref.read(AuthControllerProvider).signInWithGoogle(context);
   }
 
   @override
@@ -16,7 +16,7 @@ class SignInButton extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: ElevatedButton.icon(
-        onPressed: () => signInWithGoogle(ref),
+        onPressed: () => signInWithGoogle(context, ref),
         icon: Image.asset(
           Constants.GoogleAuth,
           width: 32,
@@ -26,7 +26,7 @@ class SignInButton extends ConsumerWidget {
           style: TextStyle(fontSize: 24),
         ),
         style: ElevatedButton.styleFrom(
-            backgroundColor: Pallete.blackColor,
+            backgroundColor: Pallete.whiteColor,
             minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20))),
