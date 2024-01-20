@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Pallete {
   // Color Pallete
-  static const blackColor = Color.fromRGBO(1, 1, 1, 1); //Primary
+  static const blackColor = Color.fromRGBO(48, 10, 36, 1); //Primary
   static const greyColor = Color.fromRGBO(188, 33, 152, 1); //Secondary
   static const drawerColor = Color.fromRGBO(18, 18, 18, 1);
   static const whiteColor = Color.fromRGBO(245, 229, 255, 1);
@@ -15,6 +15,7 @@ class Pallete {
     cardColor: greyColor,
     appBarTheme: const AppBarTheme(
       backgroundColor: drawerColor,
+      elevation: 0,
       iconTheme: IconThemeData(color: whiteColor),
     ),
     drawerTheme: const DrawerThemeData(backgroundColor: drawerColor),

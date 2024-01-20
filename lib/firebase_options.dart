@@ -44,37 +44,37 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC2suSklXTNmryshvbZT7J4ep3LeThT1BU',
-    appId: '1:549248573049:web:3b355c97fec524402f7ea8',
-    messagingSenderId: '549248573049',
-    projectId: 'wemace-36213',
-    authDomain: 'wemace-36213.firebaseapp.com',
-    storageBucket: 'wemace-36213.appspot.com',
+    apiKey: 'AIzaSyC5bVcvqndjhPC8ur-NO1wGNdHeAPw3hjo',
+    appId: '1:1065550321782:web:d307c4bd532138b4356757',
+    messagingSenderId: '1065550321782',
+    projectId: 'wemace-2cfec',
+    authDomain: 'wemace-2cfec.firebaseapp.com',
+    storageBucket: 'wemace-2cfec.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDpICdK9dleaGB-xxGuF7JzTZTBxFC0Wyg',
-    appId: '1:549248573049:android:4a60631874d2e5852f7ea8',
-    messagingSenderId: '549248573049',
-    projectId: 'wemace-36213',
-    storageBucket: 'wemace-36213.appspot.com',
+    apiKey: 'AIzaSyB4yi-jQJcyXS5EKCotdB9sQIUFVWM_dxE',
+    appId: '1:1065550321782:android:7639de40b5864386356757',
+    messagingSenderId: '1065550321782',
+    projectId: 'wemace-2cfec',
+    storageBucket: 'wemace-2cfec.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBLCH2qv6Fexi9dzXah0JR38kBUAxoxOc0',
-    appId: '1:549248573049:ios:dd6928e1dc4fa5c22f7ea8',
-    messagingSenderId: '549248573049',
-    projectId: 'wemace-36213',
-    storageBucket: 'wemace-36213.appspot.com',
+    apiKey: 'AIzaSyASzr3XEL1KNk-Q9tw5nwzsux0dSnTq7fI',
+    appId: '1:1065550321782:ios:a0ad83393c8ccf51356757',
+    messagingSenderId: '1065550321782',
+    projectId: 'wemace-2cfec',
+    storageBucket: 'wemace-2cfec.appspot.com',
     iosBundleId: 'com.example.wemace',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBLCH2qv6Fexi9dzXah0JR38kBUAxoxOc0',
-    appId: '1:549248573049:ios:ef200f6a3f02aa562f7ea8',
-    messagingSenderId: '549248573049',
-    projectId: 'wemace-36213',
-    storageBucket: 'wemace-36213.appspot.com',
+    apiKey: 'AIzaSyASzr3XEL1KNk-Q9tw5nwzsux0dSnTq7fI',
+    appId: '1:1065550321782:ios:46e1975aa5505343356757',
+    messagingSenderId: '1065550321782',
+    projectId: 'wemace-2cfec',
+    storageBucket: 'wemace-2cfec.appspot.com',
     iosBundleId: 'com.example.wemace.RunnerTests',
   );
 }

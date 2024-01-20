@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'WeMace',
-        theme: Pallete.lightModeAppTheme,
+        theme: Pallete.darkModeAppTheme,
         home: const LoginScreen(),
       ),
     );
