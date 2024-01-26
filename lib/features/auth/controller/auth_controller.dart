@@ -1,19 +1,30 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wemace/features/auth/repository/auth_repository.dart';
 import 'package:wemace/core/utils.dart';
+import 'package:wemace/models/user_model.dart';
 
-final AuthControllerProvider = Provider(
-    (ref) => AuthController(authRepository: ref.read(AuthRepositoryProvider)));
+final userProvider = StateProvider<UserModel?>((ref) => null);
 
-class AuthController {
+final authControllerProvider = StateNotifierProvider<AuthController, bool>(
+    (ref) => AuthController(
+        authRepository: ref.watch(AuthRepositoryProvider), ref: ref));
+
+class AuthController extends StateNotifier<bool> {
   final AuthRepository _authRepository;
-  AuthController({required AuthRepository authRepository})
-      : _authRepository = authRepository;
+  final Ref _ref;
+  AuthController({required AuthRepository authRepository, required Ref ref})
+      : _authRepository = authRepository,
+        _ref = ref,
+        super(false); //Loading Part
 
   void signInWithGoogle(BuildContext context) async {
+    state = true;
     final User = await _authRepository.signInWithGoogle();
-    User.fold((l) => showSnackBar(context, l.message), (r) => null);
+    state = false;
+    User.fold(
+        (l) => showSnackBar(context, l.message),
+        (userModel) =>
+            _ref.read(userProvider.notifier).update((state) => userModel));
   }
 }
