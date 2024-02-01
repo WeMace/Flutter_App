@@ -14,3 +14,7 @@ WeMace also Known as "Women Empowering Markets And Connecting Enterprises" is a 
  ## Sustainable Development Goals that We Cover!
 
 ![Group 10](https://github.com/WeMace/Flutter_App/assets/127939893/a0c2d82f-fc23-4705-b452-d82ddaa69947)
+
+ ## Google Products We Integrate on our Project!
+
+![google-products](https://github.com/WeMace/Flutter_App/assets/127939893/8b0f92de-a0e0-4add-95ef-d1d9096dab82)
