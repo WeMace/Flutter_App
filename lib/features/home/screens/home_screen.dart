@@ -15,22 +15,30 @@ class HomeScreen extends ConsumerWidget {
     final user = ref.watch(userProvider)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text('Home'),
         centerTitle: false,
         leading: Builder(builder: (context) {
           return IconButton(
-            icon: const Icon(Icons.menu, color: Colors.deepPurple),
+            icon: CircleAvatar(
+              backgroundImage: NetworkImage(user.profilePic),
+              radius: 15,
+            ),
             onPressed: () => displayDrawer(context),
           );
         }),
         actions: [
           IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.search, color: Colors.deepPurple)),
+              icon: const Icon(
+                Icons.search,
+                color: Colors.deepPurple,
+              )),
           IconButton(
-            onPressed: () {},
-            icon: CircleAvatar(backgroundImage: NetworkImage(user.profilePic)),
-          )
+              onPressed: () {},
+              icon: const Icon(
+                Icons.chat_outlined,
+                color: Colors.deepPurple,
+              )),
         ],
       ),
       drawer: CommunityListDrawer(),

@@ -3,6 +3,8 @@ class Constants {
   static const GoogleLogoPath = 'assets/images/Google.png';
   static const logoNamePath = 'assets/images/logoName.png';
   static const GoogleAuth = 'assets/images/googleIcon.png';
+  static const communityLogo = 'assets/images/Community_Logo.png';
+  static const googleAnalytics = 'assets/images/google-analytics.png';
 
   static const bannerDefault =
       'https://thumbs.dreamstime.com/b/abstract-stained-pattern-rectangle-background-blue-sky-over-fiery-red-orange-color-modern-painting-art-watercolor-effe-texture-123047399.jpg';

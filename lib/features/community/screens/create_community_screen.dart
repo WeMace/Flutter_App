@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wemace/core/constants/constants.dart';
 
 class CreateCommunityScreen extends ConsumerStatefulWidget {
   const CreateCommunityScreen({super.key});
@@ -29,14 +30,13 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
           padding: const EdgeInsets.all(20),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            // Text(
-            //   'Enter your Community Name',
-            //   style: TextStyle(
-            //     fontSize: 20,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            //   textAlign: TextAlign.center,
-            // ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                Constants.communityLogo,
+                height: 240,
+              ),
+            ),
             SizedBox(height: 20),
             TextField(
               controller: communityNameController,
