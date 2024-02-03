@@ -9,7 +9,7 @@ final userProvider = StateProvider<UserModel?>((ref) => null);
 
 final authControllerProvider = StateNotifierProvider<AuthController, bool>(
     (ref) => AuthController(
-        authRepository: ref.watch(AuthRepositoryProvider), ref: ref));
+        authRepository: ref.watch(authRepositoryProvider), ref: ref));
 
 final authStateChangeProvider = StreamProvider((ref) {
   final authController = ref.watch(authControllerProvider.notifier);

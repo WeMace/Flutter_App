@@ -10,11 +10,11 @@ import 'package:wemace/core/constants/firebase_constants.dart';
 import 'package:wemace/core/providers/firebase_providers.dart';
 import 'package:wemace/models/user_model.dart';
 
-final AuthRepositoryProvider = Provider(
+final authRepositoryProvider = Provider(
   (ref) => AuthRepository(
     firestore: ref.read(firestoreProvider),
     auth: ref.read(authProvider),
-    googleSignIn: ref.read(GoogleSignInProvider),
+    googleSignIn: ref.read(googleSignInProvider),
   ),
 );
 

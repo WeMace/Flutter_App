@@ -7,4 +7,4 @@ import 'package:google_sign_in/google_sign_in.dart';
 final firestoreProvider = Provider((ref) => FirebaseFirestore.instance);
 final authProvider = Provider((ref) => FirebaseAuth.instance);
 final storageProvider = Provider((ref) => FirebaseStorage.instance);
-final GoogleSignInProvider = Provider((ref) => GoogleSignIn());
+final googleSignInProvider = Provider((ref) => GoogleSignIn());
