@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:wemace/features/auth/screens/login_screen.dart';
+import 'package:wemace/features/community/screens/community_screen.dart';
 import 'package:wemace/features/community/screens/create_community_screen.dart';
 import 'package:wemace/features/home/screens/home_screen.dart';
 
@@ -19,4 +20,8 @@ final loggedInRoute = RouteMap(routes: {
       ),
   '/create-community': (_) =>
       const MaterialPage(child: CreateCommunityScreen()),
+  '/r/:name': (route) => MaterialPage(
+          child: CommunityScreen(
+        name: route.pathParameters['name']!,
+      )),
 });
