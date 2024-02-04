@@ -56,8 +56,9 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
               child: const Text('Create Community!',
                   style: TextStyle(fontSize: 16)),
               style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50),
-                  backgroundColor: Colors.purple[100]),
+                minimumSize: const Size(double.infinity, 50),
+                // backgroundColor: Colors.purple[100]
+              ),
             )
           ]),
         ));

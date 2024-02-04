@@ -70,15 +70,6 @@ class CommunityListDrawer extends ConsumerWidget {
               title: const Text('Settings'),
               onTap: () {},
             ),
-            // Help
-            ListTile(
-              leading: const Icon(
-                Icons.help,
-                color: Colors.deepPurple,
-              ),
-              title: const Text('Help'),
-              onTap: () {},
-            ),
           ],
         ),
       ),
