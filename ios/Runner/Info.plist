@@ -61,6 +61,8 @@
 	<string>com.googleusercontent.apps.1065550321782-noosmhcvo7vhi4bg5qiqnt9umdo1hgeg</string>
 		</array>
 	</dict>
-</array>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We use it to get Profile pictures for community section and banner image for our project Wemace</string>
 </dict>
 </plist>

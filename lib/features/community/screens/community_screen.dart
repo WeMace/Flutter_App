@@ -1,6 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
 import 'package:wemace/core/common/error_text.dart';
 import 'package:wemace/core/common/loader.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
@@ -9,6 +9,10 @@ import 'package:wemace/features/community/controller/community_controller.dart';
 class CommunityScreen extends ConsumerWidget {
   final String name;
   const CommunityScreen({super.key, required this.name});
+
+  void NavigateToEditTools(BuildContext context) {
+    Routemaster.of(context).push('/edit-tools/${name}');
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -55,7 +59,9 @@ class CommunityScreen extends ConsumerWidget {
                           ),
                           community.mods.contains(user.uid)
                               ? OutlinedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    NavigateToEditTools(context);
+                                  },
                                   style: ElevatedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),
@@ -65,7 +71,7 @@ class CommunityScreen extends ConsumerWidget {
                                   child: const Text(
                                     'Edit',
                                     style: const TextStyle(
-                                        fontSize: 16, color: Colors.yellow),
+                                        fontSize: 16, color: Colors.orange),
                                   ))
                               : OutlinedButton(
                                   onPressed: () {},
