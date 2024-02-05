@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
+import 'package:wemace/features/home/delegate/search_community_delegate.dart';
 import 'package:wemace/features/home/drawers/community_list_drawer.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -28,7 +29,10 @@ class HomeScreen extends ConsumerWidget {
         }),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showSearch(
+                    context: context, delegate: SearchCommunityDelegate(ref));
+              },
               icon: const Icon(
                 Icons.search,
                 color: Colors.deepPurple,
