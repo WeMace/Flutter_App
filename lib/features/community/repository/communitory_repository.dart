@@ -105,6 +105,18 @@ class CommunityRepository {
     });
   }
 
+  FutureVoid addMods(String communityName, List<String> uids) async {
+    try {
+      return right(_communities.doc(communityName).update({
+        'mods': uids,
+      }));
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
   CollectionReference get _communities => _firestore.collection(
         FirebaseConstants.communitiesCollection,
       );

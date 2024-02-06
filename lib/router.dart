@@ -6,6 +6,7 @@ import 'package:routemaster/routemaster.dart';
 import 'package:wemace/features/auth/screens/login_screen.dart';
 import 'package:wemace/features/community/screens/Edit_community_screen.dart';
 import 'package:wemace/features/community/screens/Edit_tools_screen.dart';
+import 'package:wemace/features/community/screens/add_mods_screen.dart';
 import 'package:wemace/features/community/screens/community_screen.dart';
 import 'package:wemace/features/community/screens/create_community_screen.dart';
 import 'package:wemace/features/home/screens/home_screen.dart';
@@ -32,6 +33,10 @@ final loggedInRoute = RouteMap(routes: {
       )),
   '/edit-community/:name': (routeData) => MaterialPage(
           child: EditCommunityScreen(
+        name: routeData.pathParameters['name']!,
+      )),
+  '/add-mods/:name': (routeData) => MaterialPage(
+          child: AddModsScreen(
         name: routeData.pathParameters['name']!,
       ))
 });
