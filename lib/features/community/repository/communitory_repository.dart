@@ -30,13 +30,31 @@ class CommunityRepository {
     }
   }
 
-  // FutureVoid joinCommunity(String communityName, String userId) async {
-  //   try {} on FirebaseException catch (e) {
-  //     throw e.message!;
-  //   } catch (e) {
-  //     return left(Failure(e.toString()));
-  //   }
-  // }
+  FutureVoid joinCommunity(String communityName, String userId) async {
+    try {
+      final list = _communities.doc(communityName).update({
+        'members': FieldValue.arrayUnion([userId])
+      });
+      return right(list);
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
+  FutureVoid leaveCommunity(String communityName, String userId) async {
+    try {
+      final list = _communities.doc(communityName).update({
+        'members': FieldValue.arrayRemove([userId])
+      });
+      return right(list);
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
 
   Stream<List<Community>> getUserCommunities(String uid) {
     return _communities

@@ -5,6 +5,7 @@ import 'package:wemace/core/common/error_text.dart';
 import 'package:wemace/core/common/loader.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
 import 'package:wemace/features/community/controller/community_controller.dart';
+import 'package:wemace/models/community_model.dart';
 
 class CommunityScreen extends ConsumerWidget {
   final String name;
@@ -12,6 +13,12 @@ class CommunityScreen extends ConsumerWidget {
 
   void NavigateToEditTools(BuildContext context) {
     Routemaster.of(context).push('/edit-tools/${name}');
+  }
+
+  void joinCommunity(WidgetRef ref, Community community, BuildContext context) {
+    ref
+        .read(communityControllerProvider.notifier)
+        .joinCommunity(community, context);
   }
 
   @override
@@ -74,7 +81,8 @@ class CommunityScreen extends ConsumerWidget {
                                         fontSize: 16, color: Colors.orange),
                                   ))
                               : OutlinedButton(
-                                  onPressed: () {},
+                                  onPressed: () =>
+                                      joinCommunity(ref, community, context),
                                   style: ElevatedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),
@@ -96,7 +104,7 @@ class CommunityScreen extends ConsumerWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
-                        child: Text('${community.members.length} Women'),
+                        child: Text('${community.members.length} Members'),
                       )
                     ])),
                   ),

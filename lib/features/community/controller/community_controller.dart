@@ -1,11 +1,12 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:wemace/core/constants/constants.dart';
+import 'package:wemace/core/failure.dart';
 import 'package:wemace/core/providers/storage_repository_provider.dart';
 import 'package:wemace/core/utils.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
@@ -68,6 +69,24 @@ class CommunityController extends StateNotifier<bool> {
     res.fold((l) => showSnackBar(context, l.message), (r) {
       showSnackBar(context, 'Community created successfully!');
       Routemaster.of(context).pop();
+    });
+  }
+
+  void joinCommunity(Community community, BuildContext context) async {
+    final uid = _ref.read(userProvider)!.uid;
+    Either<Failure, void> res;
+    if (community.members.contains(uid)) {
+      res = await _communityRepository.leaveCommunity(community.name, uid);
+    } else {
+      res = await _communityRepository.joinCommunity(community.name, uid);
+    }
+
+    res.fold((l) => showSnackBar(context, l.message), (r) {
+      if (community.members.contains(uid)) {
+        showSnackBar(context, 'you left the Community!');
+      } else {
+        showSnackBar(context, 'joined Community!');
+      }
     });
   }
 

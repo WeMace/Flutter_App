@@ -45,7 +45,7 @@ class CommunityListDrawer extends ConsumerWidget {
                   'View Profile',
                   style: TextStyle(color: Colors.black54),
                 ),
-              ), // You can add email here if needed
+              ),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(user.profilePic),
               ),
@@ -68,7 +68,7 @@ class CommunityListDrawer extends ConsumerWidget {
                         return ListTile(
                           leading: CircleAvatar(
                             backgroundImage: NetworkImage(community.avatar),
-                            radius: 16,
+                            radius: 24,
                           ),
                           title: Text('${community.name}'),
                           onTap: () {
@@ -83,7 +83,6 @@ class CommunityListDrawer extends ConsumerWidget {
                   ),
                   loading: () => const Loader(),
                 ),
-            // const Spacer(),
             const Divider(),
             const SizedBox(height: 8),
             ListTile(
