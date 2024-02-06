@@ -83,14 +83,14 @@ class CommunityScreen extends ConsumerWidget {
                                           horizontal: 25)),
                                   child: community.members.contains(user.uid)
                                       ? Text(
+                                          'leave',
+                                          style: const TextStyle(
+                                              fontSize: 16, color: Colors.red),
+                                        )
+                                      : Text(
                                           'Join',
                                           style: const TextStyle(
                                               fontSize: 16, color: Colors.blue),
-                                        )
-                                      : Text(
-                                          'Leave',
-                                          style: const TextStyle(
-                                              fontSize: 16, color: Colors.red),
                                         ))
                         ],
                       ),

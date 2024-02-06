@@ -22,6 +22,7 @@ class UserModel {
     String? name,
     String? profilePic,
     String? banner,
+    String? uid,
     bool? isAuthenticated,
     int? karma,
     List<String>? awards,
@@ -38,33 +39,31 @@ class UserModel {
   }
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'name': name});
-    result.addAll({'profilePic': profilePic});
-    result.addAll({'banner': banner});
-    result.addAll({'isAuthenticated': isAuthenticated});
-    result.addAll({'karma': karma});
-    result.addAll({'awards': awards});
-
-    return result;
+    return {
+      'name': name,
+      'profilePic': profilePic,
+      'banner': banner,
+      'uid': uid,
+      'isAuthenticated': isAuthenticated,
+      'karma': karma,
+      'awards': awards,
+    };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       name: map['name'] ?? '',
       profilePic: map['profilePic'] ?? '',
-      uid: map['uid'] ?? '',
       banner: map['banner'] ?? '',
+      uid: map['uid'] ?? '',
       isAuthenticated: map['isAuthenticated'] ?? false,
       karma: map['karma']?.toInt() ?? 0,
       awards: List<String>.from(map['awards']),
     );
   }
-
   @override
   String toString() {
-    return 'UserModel(name: $name, profilePic: $profilePic, banner: $banner, isAuthenticated: $isAuthenticated, karma: $karma, awards: $awards)';
+    return 'UserModel(name: $name, profilePic: $profilePic, banner: $banner, uid: $uid, isAuthenticated: $isAuthenticated, karma: $karma, awards: $awards)';
   }
 
   @override
@@ -75,6 +74,7 @@ class UserModel {
         other.name == name &&
         other.profilePic == profilePic &&
         other.banner == banner &&
+        other.uid == uid &&
         other.isAuthenticated == isAuthenticated &&
         other.karma == karma &&
         listEquals(other.awards, awards);
@@ -85,6 +85,7 @@ class UserModel {
     return name.hashCode ^
         profilePic.hashCode ^
         banner.hashCode ^
+        uid.hashCode ^
         isAuthenticated.hashCode ^
         karma.hashCode ^
         awards.hashCode;

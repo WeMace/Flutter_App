@@ -62,22 +62,23 @@ class CommunityListDrawer extends ConsumerWidget {
             ref.watch(userCommunitiesProvider).when(
                   data: (communities) => Expanded(
                     child: ListView.builder(
-                        itemCount: communities.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final community = communities[index];
-                          return ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(community.avatar),
-                              radius: 16,
-                            ),
-                            title: Text('${community.name}'),
-                            onTap: () {
-                              navigateToCommunity(context, community);
-                            },
-                          );
-                        }),
+                      itemCount: communities.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final community = communities[index];
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(community.avatar),
+                            radius: 16,
+                          ),
+                          title: Text('${community.name}'),
+                          onTap: () {
+                            navigateToCommunity(context, community);
+                          },
+                        );
+                      },
+                    ),
                   ),
-                  error: (error, StackTrace) => ErrorText(
+                  error: (error, stackTrace) => ErrorText(
                     error: error.toString(),
                   ),
                   loading: () => const Loader(),

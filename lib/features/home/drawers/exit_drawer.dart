@@ -5,6 +5,10 @@ import 'package:wemace/features/auth/controller/auth_controller.dart';
 class ExitDrawer extends ConsumerWidget {
   const ExitDrawer({super.key});
 
+  void logOut(WidgetRef ref) {
+    ref.read(authControllerProvider.notifier).logOut();
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
@@ -38,7 +42,7 @@ class ExitDrawer extends ConsumerWidget {
               color: Colors.red,
             ),
             title: const Text('Log Out'),
-            onTap: () {},
+            onTap: () => logOut(ref),
           ),
           Switch.adaptive(value: true, onChanged: (val) {}),
         ],
