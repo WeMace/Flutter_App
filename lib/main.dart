@@ -5,7 +5,6 @@ import 'package:routemaster/routemaster.dart';
 import 'package:wemace/core/common/error_text.dart';
 import 'package:wemace/core/common/loader.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
-import 'package:wemace/features/auth/screens/login_screen.dart';
 import 'package:wemace/models/user_model.dart';
 import 'package:wemace/router.dart';
 import 'package:wemace/theme/pallete.dart';

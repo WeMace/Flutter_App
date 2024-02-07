@@ -34,7 +34,7 @@ class LoginScreen extends ConsumerWidget {
                 height: 40,
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: Image.asset(
                   Constants.logoNamePath,
                   height: 400,
@@ -43,19 +43,21 @@ class LoginScreen extends ConsumerWidget {
               const Text(
                 'Women Empowering Market',
                 style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.8,
+                ),
               ),
               const Text(
                 'And Connecting Enterprises',
                 style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.8,
+                ),
               ),
               const SizedBox(
-                height: 10,
+                height: 24,
               ),
               const SignInButton()
             ]),

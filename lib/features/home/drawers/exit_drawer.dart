@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
 
 class ExitDrawer extends ConsumerWidget {
@@ -7,6 +8,10 @@ class ExitDrawer extends ConsumerWidget {
 
   void logOut(WidgetRef ref) {
     ref.read(authControllerProvider.notifier).logOut();
+  }
+
+  void navigateToEditUser(BuildContext context, String uid) {
+    Routemaster.of(context).push('/edit-profile/$uid');
   }
 
   @override
@@ -34,7 +39,9 @@ class ExitDrawer extends ConsumerWidget {
           ListTile(
             leading: const Icon(Icons.edit),
             title: const Text('Edit Profile'),
-            onTap: () {},
+            onTap: () {
+              navigateToEditUser(context, user.uid);
+            },
           ),
           ListTile(
             leading: const Icon(

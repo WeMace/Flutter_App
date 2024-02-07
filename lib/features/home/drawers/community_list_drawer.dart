@@ -15,8 +15,8 @@ class CommunityListDrawer extends ConsumerWidget {
     Routemaster.of(context).push('/create-community');
   }
 
-  void navigateToUserProfile(BuildContext context) {
-    // Routemaster.of(context).push('/user-profile');
+  void navigateToUserProfile(BuildContext context, String uid) {
+    Routemaster.of(context).push('/u/$uid');
   }
 
   void navigateToCommunity(BuildContext context, Community community) {
@@ -40,7 +40,7 @@ class CommunityListDrawer extends ConsumerWidget {
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
               accountEmail: GestureDetector(
-                onTap: () => navigateToUserProfile(context),
+                onTap: () => navigateToUserProfile(context, user.uid),
                 child: Text(
                   'View Profile',
                   style: TextStyle(color: Colors.black54),

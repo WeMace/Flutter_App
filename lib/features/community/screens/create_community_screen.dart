@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wemace/core/common/loader.dart';
 import 'package:wemace/core/constants/constants.dart';
 import 'package:wemace/features/community/controller/community_controller.dart';
+import 'package:wemace/theme/pallete.dart';
 
 class CreateCommunityScreen extends ConsumerStatefulWidget {
   const CreateCommunityScreen({super.key});
@@ -53,6 +54,8 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
                       TextField(
                         controller: communityNameController,
                         decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Pallete.whiteColor,
                           hintText: 'Community Name',
                           hintStyle: TextStyle(fontSize: 16),
                           prefixIcon: Icon(Icons.group),
@@ -61,6 +64,7 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
                           ),
                         ),
                         maxLines: 1,
+                        maxLength: 15,
                       ),
                       const SizedBox(height: 30),
                       ElevatedButton(
