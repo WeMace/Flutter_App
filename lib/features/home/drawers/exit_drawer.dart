@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
+import 'package:wemace/theme/pallete.dart';
 
 class ExitDrawer extends ConsumerWidget {
   const ExitDrawer({super.key});
@@ -12,6 +13,10 @@ class ExitDrawer extends ConsumerWidget {
 
   void navigateToEditUser(BuildContext context, String uid) {
     Routemaster.of(context).push('/edit-profile/$uid');
+  }
+
+  void toggleTheme(WidgetRef ref) {
+    ref.read(themeNotifierProvider.notifier).toggleTheme();
   }
 
   @override
@@ -51,7 +56,11 @@ class ExitDrawer extends ConsumerWidget {
             title: const Text('Log Out'),
             onTap: () => logOut(ref),
           ),
-          Switch.adaptive(value: true, onChanged: (val) {}),
+          Switch.adaptive(
+            value: ref.watch(themeNotifierProvider.notifier).mode ==
+                ThemeMode.dark,
+            onChanged: (val) => toggleTheme(ref),
+          ),
         ],
       )),
     );

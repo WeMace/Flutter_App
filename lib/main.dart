@@ -49,7 +49,7 @@ class _MyAppState extends ConsumerState<MyApp> {
               child: MaterialApp.router(
                 debugShowCheckedModeBanner: false,
                 title: 'WeMace',
-                theme: Pallete.lightModeAppTheme,
+                theme: ref.watch(themeNotifierProvider),
                 routerDelegate: RoutemasterDelegate(
                   routesBuilder: (context) {
                     if (data != null) {

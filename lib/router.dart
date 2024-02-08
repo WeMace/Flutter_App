@@ -10,6 +10,7 @@ import 'package:wemace/features/community/screens/add_mods_screen.dart';
 import 'package:wemace/features/community/screens/community_screen.dart';
 import 'package:wemace/features/community/screens/create_community_screen.dart';
 import 'package:wemace/features/home/screens/home_screen.dart';
+import 'package:wemace/features/post/screens/add_post_type_screen.dart';
 import 'package:wemace/features/userprofile/screens/edit_profile_screen.dart';
 import 'package:wemace/features/userprofile/screens/user_profile_screen.dart';
 
@@ -48,5 +49,10 @@ final loggedInRoute = RouteMap(routes: {
   '/edit-profile/:uid': (routeData) => MaterialPage(
           child: EditProfileScreen(
         uid: routeData.pathParameters['uid']!,
-      ))
+      )),
+  '/add-post/:type': (routeData) => MaterialPage(
+        child: AddPostTypeScreen(
+          type: routeData.pathParameters['type']!,
+        ),
+      ),
 });
