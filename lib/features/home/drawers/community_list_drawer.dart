@@ -7,6 +7,7 @@ import 'package:wemace/core/constants/constants.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
 import 'package:wemace/features/community/controller/community_controller.dart';
 import 'package:wemace/models/community_model.dart';
+import 'package:wemace/theme/pallete.dart';
 
 class CommunityListDrawer extends ConsumerWidget {
   const CommunityListDrawer({Key? key});
@@ -26,7 +27,7 @@ class CommunityListDrawer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
-
+    final currentTheme = ref.watch(themeNotifierProvider);
     return Drawer(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -36,14 +37,15 @@ class CommunityListDrawer extends ConsumerWidget {
             UserAccountsDrawerHeader(
               accountName: Text(
                 user.name,
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: currentTheme.dividerColor),
               ),
               accountEmail: GestureDetector(
                 onTap: () => navigateToUserProfile(context, user.uid),
                 child: Text(
                   'View Profile',
-                  style: TextStyle(color: Colors.black54),
+                  style: TextStyle(color: currentTheme.dividerColor),
                 ),
               ),
               currentAccountPicture: CircleAvatar(
@@ -54,7 +56,7 @@ class CommunityListDrawer extends ConsumerWidget {
             ListTile(
               leading: const Icon(
                 Icons.add_business_outlined,
-                color: Colors.deepPurple,
+                color: Colors.purple,
               ),
               title: const Text('Create a Community'),
               onTap: () => navigateToCreateCommunity(context),
@@ -67,6 +69,7 @@ class CommunityListDrawer extends ConsumerWidget {
                         final community = communities[index];
                         return ListTile(
                           leading: CircleAvatar(
+                            backgroundColor: currentTheme.indicatorColor,
                             backgroundImage: NetworkImage(community.avatar),
                             radius: 24,
                           ),

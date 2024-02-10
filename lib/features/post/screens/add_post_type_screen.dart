@@ -1,8 +1,5 @@
 import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +13,7 @@ import 'package:wemace/theme/pallete.dart';
 class AddPostTypeScreen extends ConsumerStatefulWidget {
   final String type;
   const AddPostTypeScreen({
-    super.key,
+    Key? key,
     required this.type,
   });
 
@@ -58,35 +55,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
   }
 
   void sharePost() {
-    // if (widget.type == 'image' &&
-    //     (bannerFile != null || bannerWebFile != null) &&
-    //     titleController.text.isNotEmpty) {
-    //   ref.read(postControllerProvider.notifier).shareImagePost(
-    //         context: context,
-    //         title: titleController.text.trim(),
-    //         selectedCommunity: selectedCommunity ?? communities[0],
-    //         file: bannerFile,
-    //         webFile: bannerWebFile,
-    //       );
-    // } else if (widget.type == 'text' && titleController.text.isNotEmpty) {
-    //   ref.read(postControllerProvider.notifier).shareTextPost(
-    //         context: context,
-    //         title: titleController.text.trim(),
-    //         selectedCommunity: selectedCommunity ?? communities[0],
-    //         description: descriptionController.text.trim(),
-    //       );
-    // } else if (widget.type == 'link' &&
-    //     titleController.text.isNotEmpty &&
-    //     linkController.text.isNotEmpty) {
-    //   ref.read(postControllerProvider.notifier).shareLinkPost(
-    //         context: context,
-    //         title: titleController.text.trim(),
-    //         selectedCommunity: selectedCommunity ?? communities[0],
-    //         link: linkController.text.trim(),
-    //       );
-    // } else {
     showSnackBar(context, 'Please enter all the fields');
-    // }
   }
 
   @override
@@ -106,33 +75,27 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
           ),
         ],
       ),
-      body:
-          //  isLoading
-          //     ? const Loader()
-          // : Responsive(
-          //     child: Padding(
-          //       padding: const EdgeInsets.all(8.0),
-          //       child:
-          Column(
+      body: Column(
         children: [
           TextField(
             controller: titleController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               filled: true,
               hintText: 'Enter Title here',
               border: InputBorder.none,
               contentPadding: EdgeInsets.all(18),
+              fillColor: currentTheme.colorScheme.background,
             ),
             maxLength: 30,
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           if (isTypeImage)
             GestureDetector(
               onTap: selectBannerImage,
               child: DottedBorder(
                 borderType: BorderType.RRect,
-                radius: const Radius.circular(10),
-                dashPattern: const [10, 4],
+                radius: Radius.circular(10),
+                dashPattern: [10, 4],
                 strokeCap: StrokeCap.round,
                 color: currentTheme.textTheme.bodyMedium!.color!,
                 child: Container(
@@ -145,7 +108,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                       ? Image.memory(bannerWebFile!)
                       : bannerFile != null
                           ? Image.file(bannerFile!)
-                          : const Center(
+                          : Center(
                               child: Icon(
                                 Icons.camera_alt_outlined,
                                 size: 40,
@@ -157,26 +120,28 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
           if (isTypeText)
             TextField(
               controller: descriptionController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 filled: true,
                 hintText: 'Enter Description here',
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.all(18),
+                fillColor: currentTheme.colorScheme.background,
               ),
               maxLines: 5,
             ),
           if (isTypeLink)
             TextField(
               controller: linkController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 filled: true,
                 hintText: 'Enter link here',
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.all(18),
+                fillColor: currentTheme.colorScheme.background,
               ),
             ),
-          const SizedBox(height: 20),
-          const Align(
+          SizedBox(height: 20),
+          Align(
             alignment: Alignment.topLeft,
             child: Text(
               'Select Community',
@@ -187,7 +152,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                   communities = data;
 
                   if (data.isEmpty) {
-                    return const SizedBox();
+                    return SizedBox();
                   }
 
                   return DropdownButton(
@@ -210,7 +175,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                 error: (error, stackTrace) => ErrorText(
                   error: error.toString(),
                 ),
-                loading: () => const Loader(),
+                loading: () => Loader(),
               ),
         ],
       ),

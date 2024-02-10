@@ -66,13 +66,14 @@ class SearchCommunityDelegate extends SearchDelegate {
 
   @override
   ThemeData appBarTheme(BuildContext context) {
+    final currentTheme = ref.watch(themeNotifierProvider);
     final theme = Theme.of(context);
     return theme.copyWith(
       textTheme: TextTheme(
         bodyLarge: const TextStyle(color: Colors.black),
       ),
       inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(color: Pallete.blackColor),
+        hintStyle: TextStyle(color: currentTheme.dividerColor),
         filled: true,
         fillColor: Colors.white70,
         border: OutlineInputBorder(

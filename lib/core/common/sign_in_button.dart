@@ -13,6 +13,7 @@ class SignInButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentTheme = ref.watch(themeNotifierProvider);
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: ElevatedButton.icon(
@@ -26,7 +27,7 @@ class SignInButton extends ConsumerWidget {
           style: TextStyle(fontSize: 24),
         ),
         style: ElevatedButton.styleFrom(
-            backgroundColor: Pallete.whiteColor,
+            backgroundColor: currentTheme.scaffoldBackgroundColor,
             minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20))),

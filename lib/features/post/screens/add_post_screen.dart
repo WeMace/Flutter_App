@@ -5,7 +5,7 @@ import 'package:routemaster/routemaster.dart';
 import 'package:wemace/theme/pallete.dart';
 
 class AddPostScreen extends ConsumerWidget {
-  const AddPostScreen({super.key});
+  const AddPostScreen({Key? key});
 
   void navigateToType(BuildContext context, String type) {
     Routemaster.of(context).push('/add-post/$type');
@@ -13,9 +13,9 @@ class AddPostScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    double cardHeightWidth = kIsWeb ? 360 : 120;
-    double iconSize = kIsWeb ? 120 : 60;
     final currentTheme = ref.watch(themeNotifierProvider);
+    final cardHeightWidth = kIsWeb ? 200.0 : 120.0;
+    final iconSize = kIsWeb ? 80.0 : 60.0;
 
     return Scaffold(
       body: Row(
@@ -57,6 +57,7 @@ class AddPostScreen extends ConsumerWidget {
                   child: Icon(
                     Icons.font_download_outlined,
                     size: iconSize,
+                    color: currentTheme.iconTheme.color,
                   ),
                 ),
               ),
