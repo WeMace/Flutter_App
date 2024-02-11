@@ -91,7 +91,7 @@ class PostController extends StateNotifier<bool> {
     state = false;
     res.fold((l) => showSnackBar(context, l.message), (r) {
       showSnackBar(context, 'Posted successfully!');
-      Routemaster.of(context).push('/');
+      Routemaster.of(context).pop();
     });
   }
 
@@ -128,7 +128,7 @@ class PostController extends StateNotifier<bool> {
     state = false;
     res.fold((l) => showSnackBar(context, l.message), (r) {
       showSnackBar(context, 'Posted successfully!');
-      Routemaster.of(context).push('/');
+      Routemaster.of(context).pop();
     });
   }
 
@@ -173,7 +173,7 @@ class PostController extends StateNotifier<bool> {
       state = false;
       res.fold((l) => showSnackBar(context, l.message), (r) {
         showSnackBar(context, 'Posted successfully!');
-        Routemaster.of(context).push('/');
+        Routemaster.of(context).pop();
       });
     });
   }
@@ -211,6 +211,8 @@ class PostController extends StateNotifier<bool> {
   Stream<Post> getPostById(String postId) {
     return _postRepository.getPostById(postId);
   }
+
+  void deletePost(Post post, BuildContext context) {}
 
   // void addComment({
   //   required BuildContext context,
@@ -251,7 +253,7 @@ class PostController extends StateNotifier<bool> {
   //       state?.awards.remove(award);
   //       return state;
   //     });
-  // Routemaster.of(context).push('/');
+  //     Routemaster.of(context).pop();
   //   });
   // }
 
