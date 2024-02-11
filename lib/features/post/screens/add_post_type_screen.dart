@@ -7,6 +7,7 @@ import 'package:wemace/core/common/error_text.dart';
 import 'package:wemace/core/common/loader.dart';
 import 'package:wemace/core/utils.dart';
 import 'package:wemace/features/community/controller/community_controller.dart';
+import 'package:wemace/features/post/controller/post_controller.dart';
 import 'package:wemace/models/community_model.dart';
 import 'package:wemace/theme/pallete.dart';
 
@@ -55,7 +56,35 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
   }
 
   void sharePost() {
-    showSnackBar(context, 'Please enter all the fields');
+    if (widget.type == 'image' &&
+        (bannerFile != null || bannerWebFile != null) &&
+        titleController.text.isNotEmpty) {
+      ref.read(postControllerProvider.notifier).shareImagePost(
+            context: context,
+            title: titleController.text.trim(),
+            selectedCommunity: selectedCommunity ?? communities[0],
+            file: bannerFile,
+            webFile: bannerWebFile,
+          );
+    } else if (widget.type == 'text' && titleController.text.isNotEmpty) {
+      ref.read(postControllerProvider.notifier).shareTextPost(
+            context: context,
+            title: titleController.text.trim(),
+            selectedCommunity: selectedCommunity ?? communities[0],
+            description: descriptionController.text.trim(),
+          );
+    } else if (widget.type == 'link' &&
+        titleController.text.isNotEmpty &&
+        linkController.text.isNotEmpty) {
+      ref.read(postControllerProvider.notifier).shareLinkPost(
+            context: context,
+            title: titleController.text.trim(),
+            selectedCommunity: selectedCommunity ?? communities[0],
+            link: linkController.text.trim(),
+          );
+    } else {
+      showSnackBar(context, 'Please enter all the fields');
+    }
   }
 
   @override
@@ -64,6 +93,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
     final isTypeText = widget.type == 'text';
     final isTypeLink = widget.type == 'link';
     final currentTheme = ref.watch(themeNotifierProvider);
+    final isLoading = ref.watch(postControllerProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -75,110 +105,116 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          TextField(
-            controller: titleController,
-            decoration: InputDecoration(
-              filled: true,
-              hintText: 'Enter Title here',
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(18),
-              fillColor: currentTheme.colorScheme.background,
-            ),
-            maxLength: 30,
-          ),
-          SizedBox(height: 10),
-          if (isTypeImage)
-            GestureDetector(
-              onTap: selectBannerImage,
-              child: DottedBorder(
-                borderType: BorderType.RRect,
-                radius: Radius.circular(10),
-                dashPattern: [10, 4],
-                strokeCap: StrokeCap.round,
-                color: currentTheme.textTheme.bodyMedium!.color!,
-                child: Container(
-                  width: double.infinity,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+      body: isLoading
+          ? Loader()
+          : Column(
+              children: [
+                TextField(
+                  controller: titleController,
+                  decoration: InputDecoration(
+                    filled: true,
+                    hintText: 'Enter Title here',
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.all(18),
+                    fillColor: currentTheme.colorScheme.background,
                   ),
-                  child: bannerWebFile != null
-                      ? Image.memory(bannerWebFile!)
-                      : bannerFile != null
-                          ? Image.file(bannerFile!)
-                          : Center(
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                size: 40,
-                              ),
-                            ),
+                  maxLength: 30,
                 ),
-              ),
-            ),
-          if (isTypeText)
-            TextField(
-              controller: descriptionController,
-              decoration: InputDecoration(
-                filled: true,
-                hintText: 'Enter Description here',
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.all(18),
-                fillColor: currentTheme.colorScheme.background,
-              ),
-              maxLines: 5,
-            ),
-          if (isTypeLink)
-            TextField(
-              controller: linkController,
-              decoration: InputDecoration(
-                filled: true,
-                hintText: 'Enter link here',
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.all(18),
-                fillColor: currentTheme.colorScheme.background,
-              ),
-            ),
-          SizedBox(height: 20),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Text(
-              'Select Community',
-            ),
-          ),
-          ref.watch(userCommunitiesProvider).when(
-                data: (data) {
-                  communities = data;
-
-                  if (data.isEmpty) {
-                    return SizedBox();
-                  }
-
-                  return DropdownButton(
-                    value: selectedCommunity ?? data[0],
-                    items: data
-                        .map(
-                          (e) => DropdownMenuItem(
-                            value: e,
-                            child: Text(e.name),
-                          ),
-                        )
-                        .toList(),
-                    onChanged: (val) {
-                      setState(() {
-                        selectedCommunity = val;
-                      });
-                    },
-                  );
-                },
-                error: (error, stackTrace) => ErrorText(
-                  error: error.toString(),
+                SizedBox(height: 10),
+                if (isTypeImage)
+                  GestureDetector(
+                    onTap: selectBannerImage,
+                    child: DottedBorder(
+                      borderType: BorderType.RRect,
+                      radius: Radius.circular(10),
+                      dashPattern: [10, 4],
+                      strokeCap: StrokeCap.round,
+                      color: currentTheme.textTheme.bodyMedium!.color!,
+                      child: Container(
+                        width: double.infinity,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: bannerWebFile != null
+                            ? Image.memory(bannerWebFile!)
+                            : bannerFile != null
+                                ? Image.file(bannerFile!)
+                                : Center(
+                                    child: Icon(
+                                      Icons.camera_alt_outlined,
+                                      size: 40,
+                                    ),
+                                  ),
+                      ),
+                    ),
+                  ),
+                if (isTypeText)
+                  TextField(
+                    controller: descriptionController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      hintText: 'Enter Description here',
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.all(18),
+                      fillColor: currentTheme.colorScheme.background,
+                    ),
+                    maxLines: 5,
+                  ),
+                if (isTypeLink)
+                  TextField(
+                    controller: linkController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      hintText: 'Enter link here',
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.all(18),
+                      fillColor: currentTheme.colorScheme.background,
+                    ),
+                  ),
+                SizedBox(height: 20),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Select Community',
+                  ),
                 ),
-                loading: () => Loader(),
-              ),
-        ],
-      ),
+                ref.watch(userCommunitiesProvider).when(
+                      data: (data) {
+                        communities = data;
+
+                        if (data.isEmpty) {
+                          return SizedBox();
+                        }
+
+                        return DropdownButton(
+                          value: selectedCommunity ?? data[0],
+                          items: data
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(
+                                    e.name,
+                                    style: TextStyle(
+                                        color: currentTheme.dividerColor),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              selectedCommunity = val;
+                            });
+                          },
+                        );
+                      },
+                      error: (error, stackTrace) => ErrorText(
+                        error: error.toString(),
+                      ),
+                      loading: () => Loader(),
+                    ),
+              ],
+            ),
     );
   }
 }
