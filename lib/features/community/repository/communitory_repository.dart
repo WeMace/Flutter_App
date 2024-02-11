@@ -6,6 +6,7 @@ import 'package:wemace/core/failure.dart';
 import 'package:wemace/core/providers/firebase_providers.dart';
 import 'package:wemace/core/type_defs.dart';
 import 'package:wemace/models/community_model.dart';
+import 'package:wemace/models/post_model.dart';
 
 final communityRepositoryProvider = Provider((ref) {
   return CommunityRepository(firestore: ref.watch(firestoreProvider));
@@ -117,7 +118,24 @@ class CommunityRepository {
     }
   }
 
-  CollectionReference get _communities => _firestore.collection(
-        FirebaseConstants.communitiesCollection,
-      );
+  Stream<List<Post>> getCommunityPosts(String name) {
+    return _posts
+        .where('communityName', isEqualTo: name)
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map(
+          (event) => event.docs
+              .map(
+                (e) => Post.fromMap(
+                  e.data() as Map<String, dynamic>,
+                ),
+              )
+              .toList(),
+        );
+  }
+
+  CollectionReference get _posts =>
+      _firestore.collection(FirebaseConstants.postsCollection);
+  CollectionReference get _communities =>
+      _firestore.collection(FirebaseConstants.communitiesCollection);
 }

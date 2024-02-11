@@ -223,6 +223,8 @@ class PostCard extends ConsumerWidget {
                             children: [
                               if (!kIsWeb)
                                 Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     IconButton(
                                       onPressed: isGuest
@@ -255,6 +257,8 @@ class PostCard extends ConsumerWidget {
                                   ],
                                 ),
                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   IconButton(
                                     onPressed: () =>

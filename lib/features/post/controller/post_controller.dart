@@ -189,14 +189,14 @@ class PostController extends StateNotifier<bool> {
     return _postRepository.fetchGuestPosts();
   }
 
-  // void deletePost(Post post, BuildContext context) async {
-  //   final res = await _postRepository.deletePost(post);
-  //   _ref
-  //       .read(userProfileControllerProvider.notifier)
-  //       .updateUserKarma(UserKarma.deletePost);
-  //   res.fold((l) => null,
-  //       (r) => showSnackBar(context, 'Post Deleted successfully!'));
-  // }
+  void deletePost(Post post, BuildContext context) async {
+    final res = await _postRepository.deletePost(post);
+    // _ref
+    //     .read(userProfileControllerProvider.notifier)
+    //     .updateUserKarma(UserKarma.deletePost);
+    res.fold((l) => null,
+        (r) => showSnackBar(context, 'Post Deleted successfully!'));
+  }
 
   void upvote(Post post) async {
     final uid = _ref.read(userProvider)!.uid;
@@ -211,8 +211,6 @@ class PostController extends StateNotifier<bool> {
   Stream<Post> getPostById(String postId) {
     return _postRepository.getPostById(postId);
   }
-
-  void deletePost(Post post, BuildContext context) {}
 
   // void addComment({
   //   required BuildContext context,

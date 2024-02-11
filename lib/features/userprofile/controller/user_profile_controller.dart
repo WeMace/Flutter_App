@@ -7,6 +7,7 @@ import 'package:wemace/core/providers/storage_repository_provider.dart';
 import 'package:wemace/core/utils.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
 import 'package:wemace/features/userprofile/repository/user_profile_repository.dart';
+import 'package:wemace/models/post_model.dart';
 import 'package:wemace/models/user_model.dart';
 
 // Conditional import for File class based on platform
@@ -21,6 +22,10 @@ final userProfileControllerProvider =
     storageRepository: storageRepository,
     ref: ref,
   );
+});
+
+final getUserPostsProvider = StreamProvider.family((ref, String uid) {
+  return ref.read(userProfileControllerProvider.notifier).getUserPosts(uid);
 });
 
 class UserProfileController extends StateNotifier<bool> {
@@ -83,5 +88,9 @@ class UserProfileController extends StateNotifier<bool> {
         Routemaster.of(context).pop();
       },
     );
+  }
+
+  Stream<List<Post>> getUserPosts(String uid) {
+    return _userProfileRepository.getUserPosts(uid);
   }
 }

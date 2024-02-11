@@ -5,6 +5,7 @@ import 'package:wemace/core/constants/firebase_constants.dart';
 import 'package:wemace/core/failure.dart';
 import 'package:wemace/core/providers/firebase_providers.dart';
 import 'package:wemace/core/type_defs.dart';
+import 'package:wemace/models/post_model.dart';
 import 'package:wemace/models/user_model.dart';
 
 final userProfileRepositoryProvider = Provider((ref) {
@@ -24,6 +25,34 @@ class UserProfileRepository {
   FutureVoid editProfile(UserModel user) async {
     try {
       return right(_users.doc(user.uid).update(user.toMap()));
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
+  Stream<List<Post>> getUserPosts(String uid) {
+    return _posts
+        .where('uid', isEqualTo: uid)
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map(
+          (event) => event.docs
+              .map(
+                (e) => Post.fromMap(
+                  e.data() as Map<String, dynamic>,
+                ),
+              )
+              .toList(),
+        );
+  }
+
+  FutureVoid updateUserKarma(UserModel user) async {
+    try {
+      return right(_users.doc(user.uid).update({
+        'karma': user.karma,
+      }));
     } on FirebaseException catch (e) {
       throw e.message!;
     } catch (e) {

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:wemace/core/common/error_text.dart';
 import 'package:wemace/core/common/loader.dart';
+import 'package:wemace/core/common/post_card.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
 import 'package:wemace/features/community/controller/community_controller.dart';
 import 'package:wemace/models/community_model.dart';
@@ -110,11 +111,23 @@ class CommunityScreen extends ConsumerWidget {
                   ),
                 ];
               },
-              body: Container(
-                child: const Text("Displaying Posts"),
-              ),
+              body: ref.watch(getCommunityPostsProvider(name)).when(
+                    data: (data) {
+                      return ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final post = data[index];
+                          return PostCard(post: post);
+                        },
+                      );
+                    },
+                    error: (error, stackTrace) {
+                      return ErrorText(error: error.toString());
+                    },
+                    loading: () => const Loader(),
+                  ),
             ),
-            error: (error, StackTrace) => ErrorText(error: error.toString()),
+            error: (error, stackTrace) => ErrorText(error: error.toString()),
             loading: () => const Loader(),
           ),
     );

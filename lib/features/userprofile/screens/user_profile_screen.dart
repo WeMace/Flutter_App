@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:wemace/core/common/error_text.dart';
 import 'package:wemace/core/common/loader.dart';
+import 'package:wemace/core/common/post_card.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
+import 'package:wemace/features/userprofile/controller/user_profile_controller.dart';
 
 class UserProfileScreen extends ConsumerWidget {
   final String uid;
@@ -94,9 +96,21 @@ class UserProfileScreen extends ConsumerWidget {
                   ),
                 ];
               },
-              body: const Center(
-                child: Text("Displaying Posts"),
-              ),
+              body: ref.watch(getUserPostsProvider(uid)).when(
+                    data: (data) {
+                      return ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final post = data[index];
+                          return PostCard(post: post);
+                        },
+                      );
+                    },
+                    error: (error, stackTrace) {
+                      return ErrorText(error: error.toString());
+                    },
+                    loading: () => const Loader(),
+                  ),
             ),
             error: (error, stackTrace) => ErrorText(error: error.toString()),
             loading: () => const Loader(),
