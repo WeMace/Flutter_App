@@ -9,7 +9,7 @@ import 'package:wemace/core/providers/storage_repository_provider.dart';
 import 'package:wemace/core/utils.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
 import 'package:wemace/features/post/repository/post_repository.dart';
-import 'package:wemace/features/userprofile/controller/user_profile_controller.dart';
+import 'package:wemace/models/comment_model.dart';
 import 'package:wemace/models/community_model.dart';
 import 'package:wemace/models/post_model.dart';
 
@@ -40,10 +40,10 @@ final getPostByIdProvider = StreamProvider.family((ref, String postId) {
   return postController.getPostById(postId);
 });
 
-// final getPostCommentsProvider = StreamProvider.family((ref, String postId) {
-//   final postController = ref.watch(postControllerProvider.notifier);
-//   return postController.fetchPostComments(postId);
-// });
+final getPostCommentsProvider = StreamProvider.family((ref, String postId) {
+  final postController = ref.watch(postControllerProvider.notifier);
+  return postController.fetchPostComments(postId);
+});
 
 class PostController extends StateNotifier<bool> {
   final PostRepository _postRepository;
@@ -212,27 +212,27 @@ class PostController extends StateNotifier<bool> {
     return _postRepository.getPostById(postId);
   }
 
-  // void addComment({
-  //   required BuildContext context,
-  //   required String text,
-  //   required Post post,
-  // }) async {
-  //   final user = _ref.read(userProvider)!;
-  //   String commentId = const Uuid().v1();
-  //   Comment comment = Comment(
-  //     id: commentId,
-  //     text: text,
-  //     createdAt: DateTime.now(),
-  //     postId: post.id,
-  //     username: user.name,
-  //     profilePic: user.profilePic,
-  //   );
-  //   final res = await _postRepository.addComment(comment);
-  //   _ref
-  //       .read(userProfileControllerProvider.notifier)
-  //       .updateUserKarma(UserKarma.comment);
-  //   res.fold((l) => showSnackBar(context, l.message), (r) => null);
-  // }
+  void addComment({
+    required BuildContext context,
+    required String text,
+    required Post post,
+  }) async {
+    final user = _ref.read(userProvider)!;
+    String commentId = const Uuid().v1();
+    Comment comment = Comment(
+      id: commentId,
+      text: text,
+      createdAt: DateTime.now(),
+      postId: post.id,
+      username: user.name,
+      profilePic: user.profilePic,
+    );
+    final res = await _postRepository.addComment(comment);
+    // _ref
+    //     .read(userProfileControllerProvider.notifier)
+    //     .updateUserKarma(UserKarma.comment);
+    res.fold((l) => showSnackBar(context, l.message), (r) => null);
+  }
 
   // void awardPost({
   //   required Post post,
@@ -255,7 +255,7 @@ class PostController extends StateNotifier<bool> {
   //   });
   // }
 
-  // Stream<List<Comment>> fetchPostComments(String postId) {
-  //   return _postRepository.getCommentsOfPost(postId);
-  // }
+  Stream<List<Comment>> fetchPostComments(String postId) {
+    return _postRepository.getCommentsOfPost(postId);
+  }
 }
