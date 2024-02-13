@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
+import 'package:wemace/core/common/sign_in_button.dart';
+import 'package:wemace/core/constants/constants.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
 import 'package:wemace/theme/pallete.dart';
 
@@ -22,6 +24,8 @@ class ExitDrawer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
+    final isGuest = !user.isAuthenticated;
+    final currentTheme = ref.watch(themeNotifierProvider);
     return Drawer(
       child: SafeArea(
           child: Column(
@@ -41,20 +45,52 @@ class ExitDrawer extends ConsumerWidget {
             height: 16,
           ),
           const Divider(),
-          ListTile(
-            leading: const Icon(Icons.edit),
-            title: const Text('Edit Profile'),
-            onTap: () {
-              navigateToEditUser(context, user.uid);
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.logout,
-              color: Colors.red,
+          isGuest
+              ? SignInButton(
+                  isFromLogin: false,
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton.icon(
+                    onPressed: () => navigateToEditUser(context, user.uid),
+                    icon: const Icon(
+                      Icons.edit,
+                      color: Colors.blue,
+                    ),
+                    label: const Text(
+                      'Customise Account',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: currentTheme.scaffoldBackgroundColor,
+                        minimumSize: const Size(double.infinity, 50),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                  ),
+                ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton.icon(
+              onPressed: () => logOut(ref),
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.red,
+              ),
+              label: isGuest
+                  ? const Text(
+                      'Trash Guest Account',
+                      style: TextStyle(fontSize: 18),
+                    )
+                  : const Text(
+                      'Log Out Account',
+                      style: TextStyle(fontSize: 18),
+                    ),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: currentTheme.scaffoldBackgroundColor,
+                  minimumSize: const Size(double.infinity, 50),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20))),
             ),
-            title: const Text('Log Out'),
-            onTap: () => logOut(ref),
           ),
           Switch.adaptive(
             value: ref.watch(themeNotifierProvider.notifier).mode ==

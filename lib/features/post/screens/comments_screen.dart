@@ -52,20 +52,21 @@ class _CommentsScreenState extends ConsumerState<CommentsScreen> {
               return Column(
                 children: [
                   PostCard(post: data),
-                  TextField(
-                    onSubmitted: (val) => addComment(data),
-                    controller: commentController,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: currentTheme.colorScheme.background,
-                      hintText: 'Comment!',
-                      hintStyle: TextStyle(fontSize: 16),
-                      prefixIcon: Icon(Icons.comment),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(32),
+                  if (!isGuest)
+                    TextField(
+                      onSubmitted: (val) => addComment(data),
+                      controller: commentController,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: currentTheme.colorScheme.background,
+                        hintText: 'Comment!',
+                        hintStyle: TextStyle(fontSize: 16),
+                        prefixIcon: Icon(Icons.comment),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(32),
+                        ),
                       ),
                     ),
-                  ),
                   const SizedBox(
                     height: 8,
                   ),

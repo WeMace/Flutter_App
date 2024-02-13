@@ -7,6 +7,11 @@ import 'package:wemace/features/auth/controller/auth_controller.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  void signInAsGuest(WidgetRef ref, BuildContext context) {
+    ref.read(authControllerProvider.notifier).signInAsGuest(context);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoading = ref.watch(authControllerProvider);
@@ -19,7 +24,9 @@ class LoginScreen extends ConsumerWidget {
         centerTitle: true,
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              signInAsGuest(ref, context);
+            },
             child: const Text(
               'Skip',
               style: TextStyle(fontWeight: FontWeight.bold),
