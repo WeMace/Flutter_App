@@ -9,6 +9,7 @@ import 'package:wemace/core/utils.dart';
 import 'package:wemace/features/community/controller/community_controller.dart';
 import 'package:wemace/features/post/controller/post_controller.dart';
 import 'package:wemace/models/community_model.dart';
+import 'package:wemace/responsive/responsive.dart';
 import 'package:wemace/theme/pallete.dart';
 
 class AddPostTypeScreen extends ConsumerStatefulWidget {
@@ -107,113 +108,118 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
       ),
       body: isLoading
           ? Loader()
-          : Column(
-              children: [
-                TextField(
-                  controller: titleController,
-                  decoration: InputDecoration(
-                    filled: true,
-                    hintText: 'Enter Title here',
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.all(18),
-                    fillColor: currentTheme.colorScheme.background,
-                  ),
-                  maxLength: 30,
-                ),
-                SizedBox(height: 10),
-                if (isTypeImage)
-                  GestureDetector(
-                    onTap: selectBannerImage,
-                    child: DottedBorder(
-                      borderType: BorderType.RRect,
-                      radius: Radius.circular(10),
-                      dashPattern: [10, 4],
-                      strokeCap: StrokeCap.round,
-                      color: currentTheme.textTheme.bodyMedium!.color!,
-                      child: Container(
-                        width: double.infinity,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
+          : Responsive(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    TextField(
+                      controller: titleController,
+                      decoration: InputDecoration(
+                        filled: true,
+                        hintText: 'Enter Title here',
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.all(18),
+                        fillColor: currentTheme.colorScheme.background,
+                      ),
+                      maxLength: 30,
+                    ),
+                    SizedBox(height: 10),
+                    if (isTypeImage)
+                      GestureDetector(
+                        onTap: selectBannerImage,
+                        child: DottedBorder(
+                          borderType: BorderType.RRect,
+                          radius: Radius.circular(10),
+                          dashPattern: [10, 4],
+                          strokeCap: StrokeCap.round,
+                          color: currentTheme.textTheme.bodyMedium!.color!,
+                          child: Container(
+                            width: double.infinity,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: bannerWebFile != null
+                                ? Image.memory(bannerWebFile!)
+                                : bannerFile != null
+                                    ? Image.file(bannerFile!)
+                                    : Center(
+                                        child: Icon(
+                                          Icons.camera_alt_outlined,
+                                          size: 40,
+                                        ),
+                                      ),
+                          ),
                         ),
-                        child: bannerWebFile != null
-                            ? Image.memory(bannerWebFile!)
-                            : bannerFile != null
-                                ? Image.file(bannerFile!)
-                                : Center(
-                                    child: Icon(
-                                      Icons.camera_alt_outlined,
-                                      size: 40,
+                      ),
+                    if (isTypeText)
+                      TextField(
+                        controller: descriptionController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          hintText: 'Enter Description here',
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.all(18),
+                          fillColor: currentTheme.colorScheme.background,
+                        ),
+                        maxLines: 5,
+                      ),
+                    if (isTypeLink)
+                      TextField(
+                        controller: linkController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          hintText: 'Enter link here',
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.all(18),
+                          fillColor: currentTheme.colorScheme.background,
+                        ),
+                      ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Select Community',
+                      ),
+                    ),
+                    ref.watch(userCommunitiesProvider).when(
+                          data: (data) {
+                            communities = data;
+
+                            if (data.isEmpty) {
+                              return SizedBox();
+                            }
+
+                            return DropdownButton(
+                              value: selectedCommunity ?? data[0],
+                              items: data
+                                  .map(
+                                    (e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text(
+                                        e.name,
+                                        style: TextStyle(
+                                            color: currentTheme.dividerColor),
+                                      ),
                                     ),
-                                  ),
-                      ),
-                    ),
-                  ),
-                if (isTypeText)
-                  TextField(
-                    controller: descriptionController,
-                    decoration: InputDecoration(
-                      filled: true,
-                      hintText: 'Enter Description here',
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(18),
-                      fillColor: currentTheme.colorScheme.background,
-                    ),
-                    maxLines: 5,
-                  ),
-                if (isTypeLink)
-                  TextField(
-                    controller: linkController,
-                    decoration: InputDecoration(
-                      filled: true,
-                      hintText: 'Enter link here',
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(18),
-                      fillColor: currentTheme.colorScheme.background,
-                    ),
-                  ),
-                SizedBox(height: 20),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Select Community',
-                  ),
-                ),
-                ref.watch(userCommunitiesProvider).when(
-                      data: (data) {
-                        communities = data;
-
-                        if (data.isEmpty) {
-                          return SizedBox();
-                        }
-
-                        return DropdownButton(
-                          value: selectedCommunity ?? data[0],
-                          items: data
-                              .map(
-                                (e) => DropdownMenuItem(
-                                  value: e,
-                                  child: Text(
-                                    e.name,
-                                    style: TextStyle(
-                                        color: currentTheme.dividerColor),
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                          onChanged: (val) {
-                            setState(() {
-                              selectedCommunity = val;
-                            });
+                                  )
+                                  .toList(),
+                              onChanged: (val) {
+                                setState(() {
+                                  selectedCommunity = val;
+                                });
+                              },
+                            );
                           },
-                        );
-                      },
-                      error: (error, stackTrace) => ErrorText(
-                        error: error.toString(),
-                      ),
-                      loading: () => Loader(),
-                    ),
-              ],
+                          error: (error, stackTrace) => ErrorText(
+                            error: error.toString(),
+                          ),
+                          loading: () => Loader(),
+                        ),
+                  ],
+                ),
+              ),
             ),
     );
   }

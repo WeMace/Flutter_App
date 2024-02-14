@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
 import 'package:wemace/core/constants/constants.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
 import 'package:wemace/features/home/delegate/search_community_delegate.dart';
@@ -24,6 +26,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   void displayEndDrawer(BuildContext context) {
     Scaffold.of(context).openEndDrawer();
+  }
+
+  void navigateToAddPostScreen(BuildContext context) {
+    Routemaster.of(context).push('/add-post');
   }
 
   void onPageChanged(int page) {
@@ -63,6 +69,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               color: Colors.deepPurple,
             ),
           ),
+          if (kIsWeb)
+            IconButton(
+                onPressed: () {
+                  navigateToAddPostScreen(context);
+                },
+                icon: const Icon(
+                  Icons.add,
+                  color: Colors.deepPurple,
+                )),
           Builder(builder: (context) {
             return IconButton(
               onPressed: () => displayEndDrawer(context),
@@ -77,7 +92,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       body: Constants.tabWidgets[_page],
       drawer: CommunityListDrawer(),
       endDrawer: ExitDrawer(),
-      bottomNavigationBar: isGuest
+      bottomNavigationBar: isGuest || kIsWeb
           ? null
           : CupertinoTabBar(
               activeColor: currentTheme.iconTheme.color,

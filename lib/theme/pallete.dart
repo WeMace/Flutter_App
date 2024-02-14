@@ -126,10 +126,10 @@ class Pallete {
 
 class ThemeNotifier extends StateNotifier<ThemeData> {
   ThemeMode _mode;
-  ThemeNotifier({ThemeMode mode = ThemeMode.light})
+  ThemeNotifier({ThemeMode mode = ThemeMode.dark})
       : _mode = mode,
         super(
-          Pallete.lightModeAppTheme,
+          Pallete.darkModeAppTheme,
         ) {
     getTheme();
   }

@@ -7,6 +7,7 @@ import 'package:wemace/features/auth/controller/auth_controller.dart';
 import 'package:wemace/features/post/controller/post_controller.dart';
 import 'package:wemace/features/post/widgets/comment_card.dart';
 import 'package:wemace/models/post_model.dart';
+import 'package:wemace/responsive/responsive.dart';
 import 'package:wemace/theme/pallete.dart';
 
 class CommentsScreen extends ConsumerStatefulWidget {
@@ -47,56 +48,62 @@ class _CommentsScreenState extends ConsumerState<CommentsScreen> {
     final currentTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
       appBar: AppBar(),
-      body: ref.watch(getPostByIdProvider(widget.postId)).when(
-            data: (data) {
-              return Column(
-                children: [
-                  PostCard(post: data),
-                  if (!isGuest)
-                    TextField(
-                      onSubmitted: (val) => addComment(data),
-                      controller: commentController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: currentTheme.colorScheme.background,
-                        hintText: 'Comment!',
-                        hintStyle: TextStyle(fontSize: 16),
-                        prefixIcon: Icon(Icons.comment),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(32),
-                        ),
-                      ),
-                    ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  ref.watch(getPostCommentsProvider(widget.postId)).when(
-                        data: (data) {
-                          return Expanded(
-                            child: ListView.builder(
-                              itemCount: data.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                final comment = data[index];
-                                return CommentCard(comment: comment);
-                              },
+      body: Responsive(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ref.watch(getPostByIdProvider(widget.postId)).when(
+                data: (data) {
+                  return Column(
+                    children: [
+                      PostCard(post: data),
+                      if (!isGuest)
+                        TextField(
+                          onSubmitted: (val) => addComment(data),
+                          controller: commentController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: currentTheme.colorScheme.background,
+                            hintText: 'Comment!',
+                            hintStyle: TextStyle(fontSize: 16),
+                            prefixIcon: Icon(Icons.comment),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(32),
                             ),
-                          );
-                        },
-                        error: (error, stackTrace) {
-                          return ErrorText(
-                            error: error.toString(),
-                          );
-                        },
-                        loading: () => const Loader(),
+                          ),
+                        ),
+                      const SizedBox(
+                        height: 8,
                       ),
-                ],
-              );
-            },
-            error: (error, stackTrace) => ErrorText(
-              error: error.toString(),
-            ),
-            loading: () => const Loader(),
-          ),
+                      ref.watch(getPostCommentsProvider(widget.postId)).when(
+                            data: (data) {
+                              return Expanded(
+                                child: ListView.builder(
+                                  itemCount: data.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    final comment = data[index];
+                                    return CommentCard(comment: comment);
+                                  },
+                                ),
+                              );
+                            },
+                            error: (error, stackTrace) {
+                              return ErrorText(
+                                error: error.toString(),
+                              );
+                            },
+                            loading: () => const Loader(),
+                          ),
+                    ],
+                  );
+                },
+                error: (error, stackTrace) => ErrorText(
+                  error: error.toString(),
+                ),
+                loading: () => const Loader(),
+              ),
+        ),
+      ),
     );
   }
 }

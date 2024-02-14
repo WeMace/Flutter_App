@@ -47,6 +47,10 @@ dependencies:
   shared_preferences: ^2.2.2
   uuid: ^4.3.3
   any_link_preview: ^3.0.1
+  animate_do: ^3.3.3
+  line_icons: ^2.0.3
+  advance_notification: ^1.0.6
+  bottom_bar_matu: ^1.3.1
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -10,9 +11,6 @@ import 'package:wemace/features/auth/controller/auth_controller.dart';
 import 'package:wemace/features/userprofile/repository/user_profile_repository.dart';
 import 'package:wemace/models/post_model.dart';
 import 'package:wemace/models/user_model.dart';
-
-// Conditional import for File class based on platform
-import 'dart:io' if (dart.library.html) 'dart:html';
 
 final userProfileControllerProvider =
     StateNotifierProvider<UserProfileController, bool>((ref) {
