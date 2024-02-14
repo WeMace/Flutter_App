@@ -4,6 +4,7 @@ import 'package:wemace/core/common/loader.dart';
 import 'package:wemace/core/common/sign_in_button.dart';
 import 'package:wemace/core/constants/constants.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
+import 'package:wemace/responsive/responsive.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -36,38 +37,42 @@ class LoginScreen extends ConsumerWidget {
       ),
       body: isLoading
           ? const Loader()
-          : Column(children: [
-              const SizedBox(
-                height: 40,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Image.asset(
-                  Constants.logoNamePath,
-                  height: 400,
+          : Center(
+              child: Column(children: [
+                const SizedBox(
+                  height: 40,
                 ),
-              ),
-              const Text(
-                'Women Empowering Market',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.8,
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Image.asset(
+                    Constants.logoNamePath,
+                    height: 400,
+                  ),
                 ),
-              ),
-              const Text(
-                'And Connecting Enterprises',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.8,
+                const Text(
+                  'Women Empowering Market',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.8,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              const SignInButton()
-            ]),
+                const Text(
+                  'And Connecting Enterprises',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.8,
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                const Responsive(
+                  child: const SignInButton(),
+                )
+              ]),
+            ),
     );
   }
 }

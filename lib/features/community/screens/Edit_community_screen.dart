@@ -9,6 +9,7 @@ import 'package:wemace/core/constants/constants.dart';
 import 'package:wemace/core/utils.dart';
 import 'package:wemace/features/community/controller/community_controller.dart';
 import 'package:wemace/models/community_model.dart';
+import 'package:wemace/responsive/responsive.dart';
 import 'package:wemace/theme/pallete.dart';
 
 class EditCommunityScreen extends ConsumerStatefulWidget {
@@ -91,66 +92,80 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
             ),
             body: isLoading
                 ? const Loader()
-                : Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(children: [
-                      SizedBox(
-                        height: 200,
-                        child: Stack(
-                          children: [
-                            GestureDetector(
-                              onTap: selectBannerImage,
-                              child: DottedBorder(
-                                padding: EdgeInsets.all(8),
-                                borderType: BorderType.RRect,
-                                radius: Radius.circular(10),
-                                dashPattern: const [12, 4],
-                                strokeCap: StrokeCap.round,
-                                color:
-                                    currentTheme.textTheme.bodyMedium!.color!,
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
+                : Responsive(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(children: [
+                        SizedBox(
+                          height: 200,
+                          child: Stack(
+                            children: [
+                              GestureDetector(
+                                onTap: selectBannerImage,
+                                child: DottedBorder(
+                                  padding: EdgeInsets.all(8),
+                                  borderType: BorderType.RRect,
+                                  radius: Radius.circular(10),
+                                  dashPattern: const [12, 4],
+                                  strokeCap: StrokeCap.round,
+                                  color:
+                                      currentTheme.textTheme.bodyMedium!.color!,
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 150,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: bannerWebFile != null
+                                        ? Image.memory(bannerWebFile!)
+                                        : bannerFile != null
+                                            ? Image.file(bannerFile!)
+                                            : community.banner.isEmpty ||
+                                                    community.banner ==
+                                                        Constants.bannerDefault
+                                                ? const Center(
+                                                    child: Icon(
+                                                      Icons.camera_alt_outlined,
+                                                      size: 48,
+                                                      color: Colors.purple,
+                                                    ),
+                                                  )
+                                                : Image.network(
+                                                    community.banner),
                                   ),
-                                  child: bannerFile != null
-                                      ? Image.file(bannerFile!)
-                                      : community.banner.isEmpty ||
-                                              community.banner ==
-                                                  Constants.bannerDefault
-                                          ? const Center(
-                                              child: Icon(
-                                                Icons.camera_alt_outlined,
-                                                size: 48,
-                                                color: Colors.purple,
-                                              ),
-                                            )
-                                          : Image.network(community.banner),
                                 ),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 10,
-                              left: 20,
-                              child: GestureDetector(
-                                onTap: selectAvatarImage,
-                                child: avatarFile != null
-                                    ? CircleAvatar(
-                                        backgroundImage: FileImage(avatarFile!),
-                                        radius: 32,
-                                      )
-                                    : CircleAvatar(
-                                        backgroundImage:
-                                            NetworkImage(community.avatar),
-                                        radius: 32,
-                                      ),
+                              Positioned(
+                                bottom: 10,
+                                left: 20,
+                                child: GestureDetector(
+                                  onTap: selectAvatarImage,
+                                  child: avatarWebFile != null
+                                      ? Image.memory(avatarWebFile!)
+                                      : avatarFile != null
+                                          ? CircleAvatar(
+                                              backgroundImage:
+                                                  MemoryImage(avatarWebFile!),
+                                              radius: 32,
+                                            )
+                                          : avatarFile != null
+                                              ? CircleAvatar(
+                                                  backgroundImage:
+                                                      FileImage(avatarFile!),
+                                                  radius: 32,
+                                                )
+                                              : CircleAvatar(
+                                                  backgroundImage: NetworkImage(
+                                                      community.avatar),
+                                                  radius: 32,
+                                                ),
+                                ),
                               ),
-                            )
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ]),
+                      ]),
+                    ),
                   ),
           ),
           error: (error, StackTrace) => ErrorText(error: error.toString()),
