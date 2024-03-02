@@ -24,7 +24,7 @@ class ExitDrawer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
     final isGuest = !user.isAuthenticated;
-    final currentTheme = ref.watch(themeNotifierProvider);
+    // final currentTheme = ref.watch(themeNotifierProvider);
     return Drawer(
       child: SafeArea(
           child: Column(
@@ -61,7 +61,7 @@ class ExitDrawer extends ConsumerWidget {
                       style: TextStyle(fontSize: 18),
                     ),
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: currentTheme.scaffoldBackgroundColor,
+                        // backgroundColor: currentTheme.scaffoldBackgroundColor,
                         minimumSize: const Size(double.infinity, 50),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20))),
@@ -85,7 +85,7 @@ class ExitDrawer extends ConsumerWidget {
                       style: TextStyle(fontSize: 18),
                     ),
               style: ElevatedButton.styleFrom(
-                  backgroundColor: currentTheme.scaffoldBackgroundColor,
+                  // backgroundColor: currentTheme.scaffoldBackgroundColor,
                   minimumSize: const Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20))),

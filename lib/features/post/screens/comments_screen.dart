@@ -45,7 +45,7 @@ class _CommentsScreenState extends ConsumerState<CommentsScreen> {
   Widget build(BuildContext context) {
     final user = ref.watch(userProvider)!;
     final isGuest = !user.isAuthenticated;
-    final currentTheme = ref.watch(themeNotifierProvider);
+    // final currentTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
       appBar: AppBar(),
       body: Responsive(
@@ -62,7 +62,7 @@ class _CommentsScreenState extends ConsumerState<CommentsScreen> {
                           controller: commentController,
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: currentTheme.colorScheme.background,
+                            // fillColor: currentTheme.colorScheme.background,
                             hintText: 'Comment!',
                             hintStyle: TextStyle(fontSize: 16),
                             prefixIcon: Icon(Icons.comment),

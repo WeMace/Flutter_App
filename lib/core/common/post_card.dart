@@ -58,15 +58,15 @@ class PostCard extends ConsumerWidget {
     final user = ref.watch(userProvider)!;
     final isGuest = !user.isAuthenticated;
 
-    final currentTheme = ref.watch(themeNotifierProvider);
+    // final currentTheme = ref.watch(themeNotifierProvider);
 
     return Responsive(
       child: Column(
         children: [
           Container(
             decoration: BoxDecoration(
-              color: currentTheme.drawerTheme.backgroundColor,
-            ),
+                // color: currentTheme.drawerTheme.backgroundColor,
+                ),
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,

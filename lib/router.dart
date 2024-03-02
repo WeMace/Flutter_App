@@ -1,6 +1,3 @@
-// loggedOut
-// loggedIn
-
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:wemace/features/auth/screens/login_screen.dart';
@@ -16,12 +13,14 @@ import 'package:wemace/features/post/screens/comments_screen.dart';
 import 'package:wemace/features/userprofile/screens/edit_profile_screen.dart';
 import 'package:wemace/features/userprofile/screens/user_profile_screen.dart';
 
+// loggedOut
 final loggedOutRoute = RouteMap(routes: {
   '/': (_) => const MaterialPage(
         child: LoginScreen(),
       ),
 });
 
+// loggedIn
 final loggedInRoute = RouteMap(routes: {
   '/': (_) => const MaterialPage(
         child: HomeScreen(),

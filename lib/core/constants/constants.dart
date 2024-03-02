@@ -9,7 +9,9 @@ class Constants {
   static const GoogleAuth = 'assets/images/googleIcon.png';
   static const communityLogo = 'assets/images/Community_Logo.png';
   static const googleAnalytics = 'assets/images/google-analytics.png';
-
+  static const emailAuth = 'assets/images/mailIcon.png';
+  static const womenCommunity = 'assets/images/Women_Community.png';
+  static const chatbot = 'assets/images/chatbot.png';
   static const bannerDefault =
       'https://thumbs.dreamstime.com/b/abstract-stained-pattern-rectangle-background-blue-sky-over-fiery-red-orange-color-modern-painting-art-watercolor-effe-texture-123047399.jpg';
   static const avatarDefault =

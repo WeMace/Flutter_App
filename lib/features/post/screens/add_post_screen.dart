@@ -13,7 +13,7 @@ class AddPostScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTheme = ref.watch(themeNotifierProvider);
+    // final currentTheme = ref.watch(themeNotifierProvider);
     final cardHeightWidth = kIsWeb ? 200.0 : 120.0;
     final iconSize = kIsWeb ? 80.0 : 60.0;
 
@@ -31,7 +31,7 @@ class AddPostScreen extends ConsumerWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                color: currentTheme.colorScheme.background,
+                // color: currentTheme.colorScheme.background,
                 elevation: 16,
                 child: Center(
                   child: Icon(
@@ -51,13 +51,13 @@ class AddPostScreen extends ConsumerWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                color: currentTheme.colorScheme.background,
+                // color: currentTheme.colorScheme.background,
                 elevation: 16,
                 child: Center(
                   child: Icon(
                     Icons.font_download_outlined,
                     size: iconSize,
-                    color: currentTheme.iconTheme.color,
+                    // color: currentTheme.iconTheme.color,
                   ),
                 ),
               ),
@@ -72,7 +72,7 @@ class AddPostScreen extends ConsumerWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                color: currentTheme.colorScheme.background,
+                // color: currentTheme.colorScheme.background,
                 elevation: 16,
                 child: Center(
                   child: Icon(

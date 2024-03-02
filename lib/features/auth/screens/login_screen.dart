@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wemace/core/common/email_sign_in_button.dart';
 import 'package:wemace/core/common/loader.dart';
 import 'package:wemace/core/common/sign_in_button.dart';
 import 'package:wemace/core/constants/constants.dart';
@@ -39,38 +40,59 @@ class LoginScreen extends ConsumerWidget {
           ? const Loader()
           : Center(
               child: Column(children: [
-                const SizedBox(
-                  height: 40,
-                ),
+                // const SizedBox(
+                //   height: 40,
+                // ),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: Image.asset(
                     Constants.logoNamePath,
-                    height: 400,
+                    height: 150,
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 18),
+                  child: Image.asset(
+                    Constants.womenCommunity,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 const Text(
                   'Women Empowering Market',
                   style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.8,
-                  ),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 3),
                 ),
                 const Text(
                   'And Connecting Enterprises',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 0.8,
+                    letterSpacing: 3,
                   ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 10,
                 ),
                 const Responsive(
-                  child: const SignInButton(),
-                )
+                    child: Column(
+                  children: [
+                    const SignInButton(),
+                    const EmailsignInButton(),
+                  ],
+                )),
+                // const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const ListTile(
+                    title: Center(
+                      child: Text('Don’t have a WeMace account? '),
+                    ),
+                  ),
+                ),
               ]),
             ),
     );

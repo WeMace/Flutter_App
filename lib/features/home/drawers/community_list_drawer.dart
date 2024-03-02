@@ -32,7 +32,7 @@ class CommunityListDrawer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
     final isGuest = !user.isAuthenticated;
-    final currentTheme = ref.watch(themeNotifierProvider);
+    // final currentTheme = ref.watch(themeNotifierProvider);
     return Drawer(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -43,22 +43,23 @@ class CommunityListDrawer extends ConsumerWidget {
               accountName: Text(
                 user.name,
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: currentTheme.dividerColor),
+                  fontWeight: FontWeight.bold,
+                  // color: currentTheme.dividerColor,
+                ),
               ),
               accountEmail: isGuest
                   ? GestureDetector(
                       onTap: () => logOut(ref),
                       child: Text(
                         'Sign up/Log in',
-                        style: TextStyle(color: currentTheme.dividerColor),
+                        // style: TextStyle(color: currentTheme.dividerColor),
                       ),
                     )
                   : GestureDetector(
                       onTap: () => navigateToUserProfile(context, user.uid),
                       child: Text(
                         'View Profile',
-                        style: TextStyle(color: currentTheme.dividerColor),
+                        // style: TextStyle(color: currentTheme.dividerColor),
                       ),
                     ),
               currentAccountPicture: CircleAvatar(
@@ -83,7 +84,7 @@ class CommunityListDrawer extends ConsumerWidget {
                         style: TextStyle(fontSize: 18),
                       ),
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: currentTheme.scaffoldBackgroundColor,
+                          // backgroundColor: currentTheme.scaffoldBackgroundColor,
                           minimumSize: const Size(double.infinity, 50),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20))),
@@ -98,7 +99,7 @@ class CommunityListDrawer extends ConsumerWidget {
                           final community = communities[index];
                           return ListTile(
                             leading: CircleAvatar(
-                              backgroundColor: currentTheme.indicatorColor,
+                              // backgroundColor: currentTheme.indicatorColor,
                               backgroundImage: NetworkImage(community.avatar),
                               radius: 24,
                             ),
@@ -131,7 +132,7 @@ class CommunityListDrawer extends ConsumerWidget {
                   style: TextStyle(fontSize: 18),
                 ),
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: currentTheme.scaffoldBackgroundColor,
+                    // backgroundColor: currentTheme.scaffoldBackgroundColor,
                     minimumSize: const Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
@@ -152,7 +153,7 @@ class CommunityListDrawer extends ConsumerWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                     // alignment: Alignment.center,   //mess around for text alignment
-                    backgroundColor: currentTheme.scaffoldBackgroundColor,
+                    // backgroundColor: currentTheme.scaffoldBackgroundColor,
                     minimumSize: const Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),

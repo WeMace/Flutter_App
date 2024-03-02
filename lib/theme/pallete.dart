@@ -16,111 +16,115 @@ class Pallete {
   static var redColor = Colors.red.shade500;
   static var blueColor = Colors.blue.shade300;
 
+  // palele
+
+  static const primaryColor = Color.fromRGBO(65, 18, 99, 1);
+  static const onPrimaryColor = Color.fromRGBO(255, 255, 255, 1);
+  static const secondaryColor = Color.fromRGBO(234, 67, 53, 1);
+  static const onSecondaryColor = Color.fromRGBO(255, 255, 255, 1);
+  static const backgroundColor = Color.fromRGBO(245, 229, 255, 1);
+  static const onBackgroundColor = Color.fromRGBO(2, 0, 0, 1);
+  static const surfaceColor = Color.fromRGBO(255, 255, 255, 1);
+  static const onSurfaceColor = Color.fromRGBO(2, 0, 0, 1);
+  static const errorColor = Color.fromRGBO(242, 180, 61, 1);
+  static const onErrorColor = Color.fromRGBO(255, 255, 255, 1);
+
   //Themes
-  static var darkModeAppTheme = ThemeData.dark().copyWith(
-    scaffoldBackgroundColor: blackColor,
-    cardColor: greyColor,
-    appBarTheme: const AppBarTheme(
-      titleTextStyle: TextStyle(
-        color: whiteColor,
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      ),
-      backgroundColor: drawerColor,
-      elevation: 0,
-      iconTheme: IconThemeData(color: whiteColor),
-    ),
-    textTheme: TextTheme(
-      bodySmall: const TextStyle(color: whiteColor),
-      bodyMedium: const TextStyle(color: whiteColor),
-      bodyLarge: const TextStyle(color: whiteColor),
-      labelSmall: const TextStyle(color: whiteColor),
-      labelMedium: const TextStyle(color: whiteColor),
-      labelLarge: const TextStyle(color: whiteColor),
-      displaySmall: const TextStyle(color: whiteColor),
-      displayMedium: const TextStyle(color: whiteColor),
-      displayLarge: const TextStyle(color: whiteColor),
-    ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        foregroundColor: whiteColor, backgroundColor: blackColor, // Text color
-      ),
-    ),
-    dividerTheme: DividerThemeData(
-      color: whiteColor,
-    ),
-    drawerTheme: const DrawerThemeData(
-      backgroundColor: blackColor,
-      shadowColor: greyColor,
-    ),
-    // primaryColor: whiteColor,
-    // colorScheme: ColorScheme(
-    //   background: blackColor,
-    //   brightness: Brightness.dark,
-    //   primary: blackColor,
-    //   onPrimary: whiteColor,
-    //   secondary: greyColor,
-    //   onSecondary: whiteColor,
-    //   error: whiteColor,
-    //   onError: blackColor,
-    //   onBackground: whiteColor,
-    //   surface: greyColor,
-    //   onSurface: whiteColor,
-    // ),
-  );
   static var lightModeAppTheme = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: whiteColor,
-    cardColor: greyColor,
+    scaffoldBackgroundColor: backgroundColor,
+    cardColor: backgroundColor,
     appBarTheme: const AppBarTheme(
       titleTextStyle: TextStyle(
-        color: blackColor,
+        color: onPrimaryColor,
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
-      backgroundColor: whiteColor,
+      backgroundColor: primaryColor,
       elevation: 0,
       iconTheme: IconThemeData(
-        color: blackColor, // Changed to black
+        color: onPrimaryColor, // Changed to black
       ),
     ),
-    textTheme: TextTheme(
-      bodySmall: const TextStyle(color: drawerColor),
-      bodyMedium: const TextStyle(color: drawerColor),
-      bodyLarge: const TextStyle(color: drawerColor),
-      labelSmall: const TextStyle(color: drawerColor),
-      labelMedium: const TextStyle(color: drawerColor),
-      labelLarge: const TextStyle(color: drawerColor),
-      displaySmall: const TextStyle(color: drawerColor),
-      displayMedium: const TextStyle(color: drawerColor),
-      displayLarge: const TextStyle(color: drawerColor),
-    ),
+    // textTheme: TextTheme(
+    //   bodySmall: const TextStyle(color: drawerColor),
+    //   bodyMedium: const TextStyle(color: drawerColor),
+    //   bodyLarge: const TextStyle(color: drawerColor),
+    //   labelSmall: const TextStyle(color: drawerColor),
+    //   labelMedium: const TextStyle(color: drawerColor),
+    //   labelLarge: const TextStyle(color: drawerColor),
+    //   displaySmall: const TextStyle(color: drawerColor),
+    //   displayMedium: const TextStyle(color: drawerColor),
+    //   displayLarge: const TextStyle(color: drawerColor),
+    // ),
     drawerTheme: const DrawerThemeData(
-      backgroundColor: whiteColor,
-      shadowColor: greyColor,
+      backgroundColor: backgroundColor,
+      shadowColor: onBackgroundColor,
     ),
     dividerTheme: DividerThemeData(
-      color: drawerColor,
+      color: onBackgroundColor,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        foregroundColor: blackColor,
-        backgroundColor: whiteColor, // Text color
+        foregroundColor: onBackgroundColor,
+        backgroundColor: backgroundColor, // Text color
       ),
     ),
-    // primaryColor: blackColor,
-    // colorScheme: ColorScheme(
-    //   background: whiteColor,
-    //   brightness: Brightness.light,
-    //   primary: whiteColor,
-    //   onPrimary: drawerColor,
-    //   secondary: greyColor,
-    //   onSecondary: drawerColor,
-    //   error: blackColor,
-    //   onError: whiteColor,
-    //   onBackground: blackColor,
-    //   surface: greyColor,
-    //   onSurface: drawerColor,
-    // ),
+    primaryColor: primaryColor,
+    colorScheme: ColorScheme(
+      background: backgroundColor,
+      brightness: Brightness.light,
+      primary: primaryColor,
+      onPrimary: onPrimaryColor,
+      secondary: secondaryColor,
+      onSecondary: onSecondaryColor,
+      error: errorColor,
+      onError: onErrorColor,
+      onBackground: onBackgroundColor,
+      surface: surfaceColor,
+      onSurface: onSurfaceColor,
+    ),
+  );
+  static var darkModeAppTheme = ThemeData.dark().copyWith(
+    scaffoldBackgroundColor: primaryColor,
+    cardColor: secondaryColor,
+    appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(
+        color: backgroundColor,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      backgroundColor: primaryColor,
+      elevation: 0,
+      iconTheme: IconThemeData(color: backgroundColor),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+          foregroundColor: onSecondaryColor,
+          backgroundColor: secondaryColor,
+          textStyle: TextStyle(color: onSecondaryColor) // Text color
+          ),
+    ),
+    dividerTheme: DividerThemeData(
+      color: primaryColor,
+    ),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: backgroundColor,
+      // shadowColor: onBackgroundColor,
+    ),
+    listTileTheme: ListTileThemeData(
+      textColor: onSurfaceColor,
+      iconColor: onBackgroundColor,
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedIconTheme: IconThemeData(
+        color: onBackgroundColor,
+        size: 32,
+      ),
+      unselectedIconTheme: IconThemeData(
+        color: onBackgroundColor,
+        size: 32,
+      ),
+    ),
   );
 }
 

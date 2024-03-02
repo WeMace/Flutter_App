@@ -4,15 +4,16 @@ import 'package:wemace/core/constants/constants.dart';
 import 'package:wemace/features/auth/controller/auth_controller.dart';
 import 'package:wemace/theme/pallete.dart';
 
-class SignInButton extends ConsumerWidget {
+class EmailsignInButton extends ConsumerWidget {
   final bool isFromLogin;
-  const SignInButton({Key? key, this.isFromLogin = true}) : super(key: key);
+  const EmailsignInButton({Key? key, this.isFromLogin = true})
+      : super(key: key);
 
-  void signInWithGoogle(BuildContext context, WidgetRef ref) {
-    ref
-        .read(authControllerProvider.notifier)
-        .signInWithGoogle(context, isFromLogin);
-  }
+  // void signInWithGoogle(BuildContext context, WidgetRef ref) {
+  //   ref
+  //       .read(authControllerProvider.notifier)
+  //       .signInWithGoogle(context, isFromLogin);
+  // }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,20 +22,15 @@ class SignInButton extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton.icon(
-        onPressed: () => signInWithGoogle(context, ref),
+        onPressed: () => (),
         icon: Image.asset(
-          Constants.GoogleAuth,
+          Constants.emailAuth,
           width: 28,
         ),
-        label: !isFromLogin
-            ? const Text(
-                'Link Guest with Google',
-                style: TextStyle(fontSize: 18),
-              )
-            : const Text(
-                'Google',
-                style: TextStyle(fontSize: 24),
-              ),
+        label: const Text(
+          'Email',
+          style: TextStyle(fontSize: 24),
+        ),
         style: ElevatedButton.styleFrom(
             // backgroundColor: currentTheme.scaffoldBackgroundColor,
             minimumSize: const Size(300, 50),

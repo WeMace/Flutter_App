@@ -32,7 +32,7 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
   @override
   Widget build(BuildContext context) {
     final isLoading = ref.watch(communityControllerProvider);
-    final currentTheme = ref.watch(themeNotifierProvider);
+    // final currentTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
         appBar: AppBar(
           title: Text('Create a Community'),
@@ -58,7 +58,7 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
                           controller: communityNameController,
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: currentTheme.colorScheme.background,
+                            // fillColor: currentTheme.colorScheme.background,
                             hintText: 'Community Name',
                             hintStyle: TextStyle(fontSize: 16),
                             prefixIcon: Icon(Icons.group),

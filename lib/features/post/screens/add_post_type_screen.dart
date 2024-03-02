@@ -93,7 +93,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
     final isTypeImage = widget.type == 'image';
     final isTypeText = widget.type == 'text';
     final isTypeLink = widget.type == 'link';
-    final currentTheme = ref.watch(themeNotifierProvider);
+    // final currentTheme = ref.watch(themeNotifierProvider);
     final isLoading = ref.watch(postControllerProvider);
 
     return Scaffold(
@@ -120,7 +120,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                         hintText: 'Enter Title here',
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.all(18),
-                        fillColor: currentTheme.colorScheme.background,
+                        // fillColor: currentTheme.colorScheme.background,
                       ),
                       maxLength: 30,
                     ),
@@ -133,7 +133,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                           radius: Radius.circular(10),
                           dashPattern: [10, 4],
                           strokeCap: StrokeCap.round,
-                          color: currentTheme.textTheme.bodyMedium!.color!,
+                          // color: currentTheme.textTheme.bodyMedium!.color!,
                           child: Container(
                             width: double.infinity,
                             height: 150,
@@ -161,7 +161,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                           hintText: 'Enter Description here',
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.all(18),
-                          fillColor: currentTheme.colorScheme.background,
+                          // fillColor: currentTheme.colorScheme.background,
                         ),
                         maxLines: 5,
                       ),
@@ -173,7 +173,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                           hintText: 'Enter link here',
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.all(18),
-                          fillColor: currentTheme.colorScheme.background,
+                          // fillColor: currentTheme.colorScheme.background,
                         ),
                       ),
                     SizedBox(height: 20),
@@ -200,7 +200,8 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                                       child: Text(
                                         e.name,
                                         style: TextStyle(
-                                            color: currentTheme.dividerColor),
+                                            // color: currentTheme.dividerColor,
+                                            ),
                                       ),
                                     ),
                                   )

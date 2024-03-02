@@ -9,6 +9,7 @@ import 'package:wemace/features/home/delegate/search_community_delegate.dart';
 import 'package:wemace/features/home/drawers/community_list_drawer.dart';
 import 'package:wemace/features/home/drawers/exit_drawer.dart';
 import 'package:wemace/theme/pallete.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -42,17 +43,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final user = ref.watch(userProvider)!;
     final isGuest = !user.isAuthenticated;
-    final currentTheme = ref.watch(themeNotifierProvider);
+    // final currentTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Hi, ' + user.name),
         centerTitle: false,
         leading: Builder(builder: (context) {
           return IconButton(
-            icon: CircleAvatar(
-              backgroundImage: NetworkImage(user.profilePic),
-              radius: 15,
-            ),
+            icon: const Icon(
+              Icons.menu,
+            )
+            //  CircleAvatar(
+            //   backgroundImage: NetworkImage(user.profilePic),
+            //   radius: 15,
+            // ),
+            ,
             onPressed: () => displayDrawer(context),
           );
         }),
@@ -66,7 +71,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             },
             icon: const Icon(
               Icons.search,
-              color: Colors.deepPurple,
+              // color: Colors.deepPurple,
             ),
           ),
           if (kIsWeb)
@@ -76,14 +81,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 },
                 icon: const Icon(
                   Icons.add,
-                  color: Colors.deepPurple,
+                  // color: Colors.deepPurple,
                 )),
           Builder(builder: (context) {
             return IconButton(
               onPressed: () => displayEndDrawer(context),
               icon: const Icon(
                 Icons.exit_to_app,
-                color: Colors.deepPurple,
+                // color: Colors.deepPurple,
               ),
             );
           }),
@@ -94,25 +99,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       endDrawer: ExitDrawer(),
       bottomNavigationBar: isGuest || kIsWeb
           ? null
-          : CupertinoTabBar(
-              activeColor: currentTheme.iconTheme.color,
-              backgroundColor: currentTheme.colorScheme.background,
+          : CurvedNavigationBar(
+              backgroundColor: Pallete.primaryColor,
+              color: Pallete.backgroundColor,
+              animationDuration: Duration(milliseconds: 358),
               items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: '',
+                Icon(
+                  Icons.home,
+                  color: Pallete.primaryColor,
+                  size: 32,
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.add),
-                  label: '',
+                Icon(
+                  Icons.add,
+                  color: Pallete.primaryColor,
+                  size: 32,
                 ),
-                // BottomNavigationBarItem(
-                //   icon: Icon(Icons.add),
-                //   label: '',
-                // ),
+                Icon(
+                  Icons.face,
+                  color: Pallete.primaryColor,
+                  size: 32,
+                ),
               ],
               onTap: onPageChanged,
-              currentIndex: _page,
+              // currentIndex: _page,
             ),
     );
   }
