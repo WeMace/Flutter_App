@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wemace/features/aichat/screens/ai_chat_screen.dart';
 import 'package:wemace/features/feed/feed_screen.dart';
 import 'package:wemace/features/post/screens/add_post_screen.dart';
 
@@ -20,6 +21,7 @@ class Constants {
   static const tabWidgets = [
     FeedScreen(),
     AddPostScreen(),
+    AiChatScreen(),
   ];
 
   static const IconData up =

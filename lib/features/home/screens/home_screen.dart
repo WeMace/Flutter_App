@@ -33,6 +33,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     Routemaster.of(context).push('/add-post');
   }
 
+  void navigateToAIChatScreen(BuildContext context) {
+    Routemaster.of(context).push('/add-post');
+  }
+
   void onPageChanged(int page) {
     setState(() {
       _page = page;
@@ -45,55 +49,57 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final isGuest = !user.isAuthenticated;
     // final currentTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Hi, ' + user.name),
-        centerTitle: false,
-        leading: Builder(builder: (context) {
-          return IconButton(
-            icon: const Icon(
-              Icons.menu,
+      appBar: _page == 0
+          ? AppBar(
+              title: Text('Hi, ' + user.name),
+              centerTitle: false,
+              leading: Builder(builder: (context) {
+                return IconButton(
+                  icon: const Icon(
+                    Icons.menu,
+                  )
+                  //  CircleAvatar(
+                  //   backgroundImage: NetworkImage(user.profilePic),
+                  //   radius: 15,
+                  // ),
+                  ,
+                  onPressed: () => displayDrawer(context),
+                );
+              }),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: SearchCommunityDelegate(ref),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.search,
+                    // color: Colors.deepPurple,
+                  ),
+                ),
+                if (kIsWeb)
+                  IconButton(
+                      onPressed: () {
+                        navigateToAddPostScreen(context);
+                      },
+                      icon: const Icon(
+                        Icons.add,
+                        // color: Colors.deepPurple,
+                      )),
+                Builder(builder: (context) {
+                  return IconButton(
+                    onPressed: () => displayEndDrawer(context),
+                    icon: const Icon(
+                      Icons.exit_to_app,
+                      // color: Colors.deepPurple,
+                    ),
+                  );
+                }),
+              ],
             )
-            //  CircleAvatar(
-            //   backgroundImage: NetworkImage(user.profilePic),
-            //   radius: 15,
-            // ),
-            ,
-            onPressed: () => displayDrawer(context),
-          );
-        }),
-        actions: [
-          IconButton(
-            onPressed: () {
-              showSearch(
-                context: context,
-                delegate: SearchCommunityDelegate(ref),
-              );
-            },
-            icon: const Icon(
-              Icons.search,
-              // color: Colors.deepPurple,
-            ),
-          ),
-          if (kIsWeb)
-            IconButton(
-                onPressed: () {
-                  navigateToAddPostScreen(context);
-                },
-                icon: const Icon(
-                  Icons.add,
-                  // color: Colors.deepPurple,
-                )),
-          Builder(builder: (context) {
-            return IconButton(
-              onPressed: () => displayEndDrawer(context),
-              icon: const Icon(
-                Icons.exit_to_app,
-                // color: Colors.deepPurple,
-              ),
-            );
-          }),
-        ],
-      ),
+          : null,
       body: Constants.tabWidgets[_page],
       drawer: CommunityListDrawer(),
       endDrawer: ExitDrawer(),

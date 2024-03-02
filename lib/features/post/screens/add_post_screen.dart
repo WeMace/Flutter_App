@@ -11,80 +11,86 @@ class AddPostScreen extends ConsumerWidget {
     Routemaster.of(context).push('/add-post/$type');
   }
 
+  void navigateToHome(BuildContext context) {
+    Routemaster.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // final currentTheme = ref.watch(themeNotifierProvider);
-    final cardHeightWidth = kIsWeb ? 200.0 : 120.0;
+    final cardHeightWidth = kIsWeb ? 200.0 : 150.0;
     final iconSize = kIsWeb ? 80.0 : 60.0;
 
     return Scaffold(
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTap: () => navigateToType(context, 'image'),
-            child: SizedBox(
-              height: cardHeightWidth,
-              width: cardHeightWidth,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                // color: currentTheme.colorScheme.background,
-                elevation: 16,
-                child: Center(
-                  child: Icon(
-                    Icons.image_outlined,
-                    size: iconSize,
+        appBar: AppBar(
+          title: Text('Add Post'),
+          actions: [],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 36.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              GestureDetector(
+                onTap: () => navigateToType(context, 'Image'),
+                child: Card(
+                  margin: const EdgeInsets.all(16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  color: Pallete.secondaryColor,
+                  elevation: 16,
+                  child: SizedBox(
+                    height: cardHeightWidth,
+                    child: Icon(
+                      Icons.image_outlined,
+                      size: iconSize,
+                      color: Pallete.onSecondaryColor,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => navigateToType(context, 'text'),
-            child: SizedBox(
-              height: cardHeightWidth,
-              width: cardHeightWidth,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                // color: currentTheme.colorScheme.background,
-                elevation: 16,
-                child: Center(
-                  child: Icon(
-                    Icons.font_download_outlined,
-                    size: iconSize,
-                    // color: currentTheme.iconTheme.color,
+              GestureDetector(
+                onTap: () => navigateToType(context, 'Text'),
+                child: Card(
+                  margin: const EdgeInsets.all(16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  color: Pallete.secondaryColor,
+                  elevation: 16,
+                  child: SizedBox(
+                    height: cardHeightWidth,
+                    child: Icon(
+                      Icons.text_fields_outlined,
+                      size: iconSize,
+                      color: Pallete.onSecondaryColor,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => navigateToType(context, 'link'),
-            child: SizedBox(
-              height: cardHeightWidth,
-              width: cardHeightWidth,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                // color: currentTheme.colorScheme.background,
-                elevation: 16,
-                child: Center(
-                  child: Icon(
-                    Icons.link_outlined,
-                    size: iconSize,
+              GestureDetector(
+                onTap: () => navigateToType(context, 'Link'),
+                child: Card(
+                  margin: const EdgeInsets.all(16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  color: Pallete.secondaryColor,
+                  elevation: 16,
+                  child: SizedBox(
+                    height: cardHeightWidth,
+                    child: Icon(
+                      Icons.link_outlined,
+                      size: iconSize,
+                      color: Pallete.onSecondaryColor,
+                    ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-    );
+        ));
   }
 }

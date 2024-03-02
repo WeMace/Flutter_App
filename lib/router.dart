@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
+import 'package:wemace/features/aichat/screens/ai_chat_screen.dart';
 import 'package:wemace/features/auth/screens/login_screen.dart';
 import 'package:wemace/features/community/screens/Edit_community_screen.dart';
 import 'package:wemace/features/community/screens/Edit_tools_screen.dart';
@@ -63,5 +64,8 @@ final loggedInRoute = RouteMap(routes: {
       ),
   '/add-post': (routeData) => const MaterialPage(
         child: AddPostScreen(),
+      ),
+  '/ai-chat': (routeData) => const MaterialPage(
+        child: AiChatScreen(),
       ),
 });

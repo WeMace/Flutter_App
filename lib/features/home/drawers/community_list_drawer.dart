@@ -16,6 +16,10 @@ class CommunityListDrawer extends ConsumerWidget {
     Routemaster.of(context).push('/create-community');
   }
 
+  void closeDrawer(BuildContext context) {
+    Routemaster.of(context).pop();
+  }
+
   void navigateToUserProfile(BuildContext context, String uid) {
     Routemaster.of(context).push('/u/$uid');
   }
@@ -35,128 +39,106 @@ class CommunityListDrawer extends ConsumerWidget {
     // final currentTheme = ref.watch(themeNotifierProvider);
     return Drawer(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 32.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            UserAccountsDrawerHeader(
-              accountName: Text(
-                user.name,
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(vertical: 32),
+              onTap: () {
+                closeDrawer(context);
+              },
+              leading: Icon(
+                Icons.close,
+                size: 32,
+              ),
+            ),
+            const Spacer(),
+            ListTile(
+              contentPadding: const EdgeInsets.all(12),
+              onTap: () => navigateToUserProfile(context, user.uid),
+              leading: Icon(
+                Icons.person,
+                size: 32,
+              ),
+              title: Text(
+                'Profile',
                 style: TextStyle(
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  // color: currentTheme.dividerColor,
                 ),
-              ),
-              accountEmail: isGuest
-                  ? GestureDetector(
-                      onTap: () => logOut(ref),
-                      child: Text(
-                        'Sign up/Log in',
-                        // style: TextStyle(color: currentTheme.dividerColor),
-                      ),
-                    )
-                  : GestureDetector(
-                      onTap: () => navigateToUserProfile(context, user.uid),
-                      child: Text(
-                        'View Profile',
-                        // style: TextStyle(color: currentTheme.dividerColor),
-                      ),
-                    ),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(user.profilePic),
-              ),
-              decoration: BoxDecoration(),
-            ),
-            isGuest
-                ? const SizedBox(
-                    height: 8,
-                  )
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton.icon(
-                      onPressed: () => navigateToCreateCommunity(context),
-                      icon: const Icon(
-                        Icons.add_business_outlined,
-                        color: Colors.purple,
-                      ),
-                      label: const Text(
-                        'Create a Community',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          // backgroundColor: currentTheme.scaffoldBackgroundColor,
-                          minimumSize: const Size(double.infinity, 50),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                    ),
-                  ),
-            if (!isGuest)
-              ref.watch(userCommunitiesProvider).when(
-                    data: (communities) => Expanded(
-                      child: ListView.builder(
-                        itemCount: communities.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final community = communities[index];
-                          return ListTile(
-                            leading: CircleAvatar(
-                              // backgroundColor: currentTheme.indicatorColor,
-                              backgroundImage: NetworkImage(community.avatar),
-                              radius: 24,
-                            ),
-                            title: Text('${community.name}'),
-                            onTap: () {
-                              navigateToCommunity(context, community);
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    error: (error, stackTrace) => ErrorText(
-                      error: error.toString(),
-                    ),
-                    loading: () => const Loader(),
-                  ),
-            if (isGuest) const Spacer(),
-            const Divider(),
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton.icon(
-                onPressed: () => {},
-                icon: Image.asset(
-                  Constants.googleAnalytics,
-                  width: 32,
-                ),
-                label: const Text(
-                  'Google Analytics',
-                  style: TextStyle(fontSize: 18),
-                ),
-                style: ElevatedButton.styleFrom(
-                    // backgroundColor: currentTheme.scaffoldBackgroundColor,
-                    minimumSize: const Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
               ),
             ),
-            // Settings
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton.icon(
-                onPressed: () => {},
-                icon: const Icon(
-                  Icons.settings,
-                  color: Colors.deepPurple,
+            ListTile(
+              contentPadding: const EdgeInsets.all(12),
+              leading: Icon(
+                Icons.groups,
+                size: 32,
+              ),
+              title: Text(
+                'Community',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
                 ),
-                label: const Text(
-                  'Settings',
-                  style: TextStyle(fontSize: 18),
+              ),
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.all(12),
+              leading: Icon(
+                Icons.travel_explore,
+                size: 32,
+              ),
+              title: Text(
+                'Explore',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
                 ),
-                style: ElevatedButton.styleFrom(
-                    // alignment: Alignment.center,   //mess around for text alignment
-                    // backgroundColor: currentTheme.scaffoldBackgroundColor,
-                    minimumSize: const Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
+              ),
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.all(12),
+              leading: Icon(
+                Icons.work,
+                size: 32,
+              ),
+              title: Text(
+                'Work',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.all(12),
+              leading: Icon(
+                Icons.settings,
+                size: 32,
+              ),
+              title: Text(
+                'Settings',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const Spacer(),
+            ListTile(
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+              leading: Icon(
+                Icons.logout,
+                size: 32,
+              ),
+              title: Text(
+                'Logout',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],
