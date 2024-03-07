@@ -43,6 +43,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     });
   }
 
+  static const tabWidgets = [];
+
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(userProvider)!;
@@ -57,12 +59,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 return IconButton(
                   icon: const Icon(
                     Icons.menu,
-                  )
-                  //  CircleAvatar(
-                  //   backgroundImage: NetworkImage(user.profilePic),
-                  //   radius: 15,
-                  // ),
-                  ,
+                  ),
                   onPressed: () => displayDrawer(context),
                 );
               }),
@@ -76,7 +73,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   },
                   icon: const Icon(
                     Icons.search,
-                    // color: Colors.deepPurple,
                   ),
                 ),
                 if (kIsWeb)
@@ -86,14 +82,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       },
                       icon: const Icon(
                         Icons.add,
-                        // color: Colors.deepPurple,
                       )),
                 Builder(builder: (context) {
                   return IconButton(
                     onPressed: () => displayEndDrawer(context),
                     icon: const Icon(
                       Icons.exit_to_app,
-                      // color: Colors.deepPurple,
                     ),
                   );
                 }),
@@ -108,7 +102,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           : CurvedNavigationBar(
               backgroundColor: Pallete.primaryColor,
               color: Pallete.backgroundColor,
-              animationDuration: Duration(milliseconds: 358),
+              animationDuration: Duration(milliseconds: 587),
               items: const [
                 Icon(
                   Icons.home,

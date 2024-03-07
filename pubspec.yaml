@@ -1,5 +1,5 @@
 name: wemace
-description: "A new Flutter project."
+description: "WeMace is a cross-platform app for Self Help Groups (SHGs) to promote collaboration, resource sharing, and positive change among members, fostering community organization and support."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -104,6 +104,8 @@ flutter:
     - assets/images/mailIcon.png
     - assets/images/Women_Community.png
     - assets/images/chatbot.png
+    - assets/images/Saraswati.png
+    - assets/images/Lakshmi.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

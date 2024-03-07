@@ -38,62 +38,66 @@ class LoginScreen extends ConsumerWidget {
       ),
       body: isLoading
           ? const Loader()
-          : Center(
-              child: Column(children: [
-                // const SizedBox(
-                //   height: 40,
-                // ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Image.asset(
-                    Constants.logoNamePath,
-                    height: 150,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 18),
-                  child: Image.asset(
-                    Constants.womenCommunity,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'Women Empowering Market',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 3),
-                ),
-                const Text(
-                  'And Connecting Enterprises',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 3,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Responsive(
-                    child: Column(
-                  children: [
-                    const SignInButton(),
-                    const EmailsignInButton(),
-                  ],
-                )),
-                // const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: const ListTile(
-                    title: Center(
-                      child: Text('Don’t have a WeMace account? '),
+          : SingleChildScrollView(
+              child: Center(
+                child: Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Image.asset(
+                      Constants.logoNamePath,
+                      height: 150,
                     ),
                   ),
-                ),
-              ]),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 18),
+                    child: Image.asset(
+                      Constants.womenCommunity,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    'Women Empowering Market',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 3),
+                  ),
+                  const Text(
+                    'And Connecting Enterprises',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 3,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Responsive(
+                      child: Column(
+                    children: [
+                      const SignInButton(),
+                      const EmailsignInButton(),
+                    ],
+                  )),
+                  // const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      child: Center(
+                        child: Text(
+                          'Don’t have a WeMace account?',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
+              ),
             ),
     );
   }

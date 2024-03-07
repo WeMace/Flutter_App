@@ -7,6 +7,7 @@ import 'package:wemace/features/community/screens/Edit_tools_screen.dart';
 import 'package:wemace/features/community/screens/add_mods_screen.dart';
 import 'package:wemace/features/community/screens/community_screen.dart';
 import 'package:wemace/features/community/screens/create_community_screen.dart';
+import 'package:wemace/features/community/screens/navigate_community_screen.dart';
 import 'package:wemace/features/home/screens/home_screen.dart';
 import 'package:wemace/features/post/screens/add_post_screen.dart';
 import 'package:wemace/features/post/screens/add_post_type_screen.dart';
@@ -64,6 +65,9 @@ final loggedInRoute = RouteMap(routes: {
       ),
   '/add-post': (routeData) => const MaterialPage(
         child: AddPostScreen(),
+      ),
+  '/navigate-community': (routeData) => const MaterialPage(
+        child: NavigateCommunityScreen(),
       ),
   '/ai-chat': (routeData) => const MaterialPage(
         child: AiChatScreen(),

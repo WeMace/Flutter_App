@@ -22,75 +22,72 @@ class AddPostScreen extends ConsumerWidget {
     final iconSize = kIsWeb ? 80.0 : 60.0;
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Add Post'),
-          actions: [],
-        ),
+        // appBar: AppBar(
+        //   title: const Text('Add Post'),
+        //   centerTitle: true,
+        // ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 36.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              GestureDetector(
-                onTap: () => navigateToType(context, 'Image'),
-                child: Card(
-                  margin: const EdgeInsets.all(16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                  color: Pallete.secondaryColor,
-                  elevation: 16,
-                  child: SizedBox(
-                    height: cardHeightWidth,
-                    child: Icon(
-                      Icons.image_outlined,
-                      size: iconSize,
-                      color: Pallete.onSecondaryColor,
-                    ),
-                  ),
-                ),
+      padding: const EdgeInsets.symmetric(horizontal: 36.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ElevatedButton(
+            onPressed: () => navigateToType(context, 'Image'),
+            style: ElevatedButton.styleFrom(
+              elevation: 24,
+              minimumSize: Size(300, cardHeightWidth),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
               ),
-              GestureDetector(
-                onTap: () => navigateToType(context, 'Text'),
-                child: Card(
-                  margin: const EdgeInsets.all(16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                  color: Pallete.secondaryColor,
-                  elevation: 16,
-                  child: SizedBox(
-                    height: cardHeightWidth,
-                    child: Icon(
-                      Icons.text_fields_outlined,
-                      size: iconSize,
-                      color: Pallete.onSecondaryColor,
-                    ),
-                  ),
-                ),
+            ),
+            child: SizedBox(
+              height: cardHeightWidth,
+              child: Icon(
+                Icons.image_outlined,
+                size: iconSize,
+                color: Pallete.onSecondaryColor,
               ),
-              GestureDetector(
-                onTap: () => navigateToType(context, 'Link'),
-                child: Card(
-                  margin: const EdgeInsets.all(16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                  color: Pallete.secondaryColor,
-                  elevation: 16,
-                  child: SizedBox(
-                    height: cardHeightWidth,
-                    child: Icon(
-                      Icons.link_outlined,
-                      size: iconSize,
-                      color: Pallete.onSecondaryColor,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ));
+          ElevatedButton(
+            onPressed: () => navigateToType(context, 'Text'),
+            style: ElevatedButton.styleFrom(
+              elevation: 24,
+              minimumSize: Size(300, cardHeightWidth),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
+            ),
+            child: SizedBox(
+              height: cardHeightWidth,
+              child: Icon(
+                Icons.text_fields_outlined,
+                size: iconSize,
+                color: Pallete.onSecondaryColor,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () => navigateToType(context, 'Link'),
+            style: ElevatedButton.styleFrom(
+              elevation: 24,
+              minimumSize: Size(300, cardHeightWidth),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
+            ),
+            child: SizedBox(
+              height: cardHeightWidth,
+              child: Icon(
+                Icons.link_outlined,
+                size: iconSize,
+                color: Pallete.onSecondaryColor,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ));
   }
 }

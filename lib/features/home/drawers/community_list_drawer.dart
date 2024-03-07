@@ -12,8 +12,8 @@ import 'package:wemace/theme/pallete.dart';
 class CommunityListDrawer extends ConsumerWidget {
   const CommunityListDrawer({Key? key});
 
-  void navigateToCreateCommunity(BuildContext context) {
-    Routemaster.of(context).push('/create-community');
+  void navigateToNavigateCommunity(BuildContext context) {
+    Routemaster.of(context).push('/navigate-community');
   }
 
   void closeDrawer(BuildContext context) {
@@ -22,10 +22,6 @@ class CommunityListDrawer extends ConsumerWidget {
 
   void navigateToUserProfile(BuildContext context, String uid) {
     Routemaster.of(context).push('/u/$uid');
-  }
-
-  void navigateToCommunity(BuildContext context, Community community) {
-    Routemaster.of(context).push('/r/${community.name}');
   }
 
   void logOut(WidgetRef ref) {
@@ -71,6 +67,7 @@ class CommunityListDrawer extends ConsumerWidget {
             ),
             ListTile(
               contentPadding: const EdgeInsets.all(12),
+              onTap: () => navigateToNavigateCommunity(context),
               leading: Icon(
                 Icons.groups,
                 size: 32,
@@ -127,16 +124,17 @@ class CommunityListDrawer extends ConsumerWidget {
             ),
             const Spacer(),
             ListTile(
+              onTap: () => logOut(ref),
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
               leading: Icon(
                 Icons.logout,
-                size: 32,
+                size: 28,
               ),
               title: Text(
                 'Logout',
                 style: TextStyle(
-                  fontSize: 28,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),

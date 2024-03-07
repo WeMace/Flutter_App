@@ -4,6 +4,7 @@ import 'package:wemace/features/feed/feed_screen.dart';
 import 'package:wemace/features/post/screens/add_post_screen.dart';
 
 class Constants {
+  //Local Assets
   static const logoPath = 'assets/images/logo.png';
   static const GoogleLogoPath = 'assets/images/Google.png';
   static const logoNamePath = 'assets/images/logoName.png';
@@ -13,16 +14,23 @@ class Constants {
   static const emailAuth = 'assets/images/mailIcon.png';
   static const womenCommunity = 'assets/images/Women_Community.png';
   static const chatbot = 'assets/images/chatbot.png';
+  static const Saraswati = 'assets/images/Saraswati.png';
+  static const Lakshmi = 'assets/images/Lakshmi.png';
+  //Link Assets
   static const bannerDefault =
-      'https://thumbs.dreamstime.com/b/abstract-stained-pattern-rectangle-background-blue-sky-over-fiery-red-orange-color-modern-painting-art-watercolor-effe-texture-123047399.jpg';
+      'https://i.pinimg.com/564x/d7/fb/e5/d7fbe58828c6f9f1daf289fe7d172e32.jpg';
   static const avatarDefault =
-      'https://external-preview.redd.it/5kh5OreeLd85QsqYO1Xz_4XSLYwZntfjqou-8fyBFoE.png?auto=webp&s=dbdabd04c399ce9c761ff899f5d38656d1de87c2';
+      'https://i.pinimg.com/564x/8b/1f/9f/8b1f9f145889835124f968a6aa82b79f.jpg';
 
+  // Tab Widgets Routing
   static const tabWidgets = [
     FeedScreen(),
     AddPostScreen(),
     AiChatScreen(),
   ];
+
+  // AppBar Widgets Routing
+  static const appbarwidgets = [];
 
   static const IconData up =
       IconData(0xe800, fontFamily: 'MyFlutterApp', fontPackage: null);
