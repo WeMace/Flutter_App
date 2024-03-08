@@ -49,4 +49,6 @@ class Constants {
     'thankyou': '${Constants.awardsPath}/thankyou.png',
     'til': '${Constants.awardsPath}/til.png',
   };
+
+  static const apiKey = "AIzaSyADEJ3TXRptr9zIPxXc9TQIshxjJ7QthJg";
 }

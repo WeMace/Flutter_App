@@ -53,6 +53,10 @@ class LakshmiTab extends StatelessWidget {
                       children: [
                         Expanded(
                           child: TextField(
+                            style: TextStyle(
+                              color: Pallete.primaryColor,
+                            ),
+                            cursorColor: Pallete.primaryColor,
                             // controller: ,
                             decoration: InputDecoration(
                               hintText: 'Share your Doubts',
