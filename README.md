@@ -7,9 +7,11 @@ WeMace also Known as "Women Empowering Markets And Connecting Enterprises" is a 
 ## Getting Started With our Product!
 
 <a href="https://www.youtube.com/channel/UCoH6Dysalp55yyASPNjzudg">
-    <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white" alt="LinkedIn Badge"/>
-</a> 	
-  
+    <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white" alt="Youtube Badge"/>
+</a> 
+<a href="https://www.canva.com/design/DAF7SSPPCTQ/dGLcH5dUGy46FM0DFoowkg/view?utm_content=DAF7SSPPCTQ&utm_campaign=designshare&utm_medium=link&utm_source=editor">
+    <img src="https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white" alt="Canva Badge"/>
+</a>
  <hr>
 
  ## Sustainable Development Goals that We Cover!
