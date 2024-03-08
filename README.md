@@ -1,4 +1,4 @@
-
+<body style="background: red">
 ![Logo)](https://github.com/WeMace/Flutter_App/assets/127939893/e0a3780d-01c0-4722-a163-17df40b3c663)
 
 # WeMace: Women Empowering Markets And Connecting Enterprises
@@ -56,3 +56,4 @@ Install dependencies
 ```bash
   flutter pub get
 ```
+</body>
