@@ -30,7 +30,7 @@ WeMace also Known as "Women Empowering Markets And Connecting Enterprises" is a 
 ## Badges
 
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/WeMace/Flutter_App/blob/f1df84f661cfd6bf1c5d61f373432ae9cb9dd2d8/LICENSE)
 
 ## Scope
 
