@@ -1,6 +1,4 @@
-<body style="background: red">
 ![Logo)](https://github.com/WeMace/Flutter_App/assets/127939893/e0a3780d-01c0-4722-a163-17df40b3c663)
-
 # WeMace: Women Empowering Markets And Connecting Enterprises
 WeMace also Known as "Women Empowering Markets And Connecting Enterprises" is a cross-platform app designed for Self Help Groups (SHGs) committed to organizing and forming resilient communities. Harness the power of collaboration as SHG members come together to share resources, support one another, and create positive change. Join WeMace and embark on a journey of community empowerment where individuals unite for collective growth and impact.
 
@@ -56,4 +54,3 @@ Install dependencies
 ```bash
   flutter pub get
 ```
-</body>
